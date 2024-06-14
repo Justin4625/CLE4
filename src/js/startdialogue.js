@@ -5,7 +5,7 @@ export class Startdialogue extends Scene {
         super();
         this.currentDialogueIndex = 0;
         this.dialogues = [
-            "Hier ben ik, in de wind die fluistert, in het water dat stroomt... Jij bent uitverkoren. 1234",
+            "Hier ben ik, in de wind die fluistert, in het water dat stroomt... Jij bent uitverkoren.",
             "Je bent gekomen omdat je geroepen werd. Er rust een taak op jouw schouders, een taak van groot belang.",
             "Je moet vier artefacten vinden, verborgen rondom deze wateren en bossen. Ze zijn sleutels tot het mysterie dat wacht om onthuld te worden.",
             "Je zult begrijpen wanneer de tijd rijp is. Vind het, en de weg zal zich openbaren.",
