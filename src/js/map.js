@@ -1,19 +1,19 @@
-import { Actor, Scene, Vector } from "excalibur";
-import { Resources } from "./resources";
+import { Scene } from "excalibur";
+import { Startdialogue } from "./startdialogue"; // Zorg ervoor dat het juiste pad is ingesteld naar Startdialogue
 
 export class Map extends Scene {
 
     onInitialize(engine) {
         console.log("start de game!");
 
-        this.setupScene(engine);
+        // Start gelijk de dialoog wanneer de Map scene wordt geïnitialiseerd
+        this.startDialogue(engine);
     }
     
-    setupScene(engine) {
-        const fish = new Actor()
-        fish.graphics.use(Resources.Fish.toSprite())
-        fish.pos = new Vector(400, 300)
-        fish.vel = new Vector(-10,0)
-        this.add(fish)
+    startDialogue(engine) {
+        // Maak een instantie van de Startdialogue scene en laad deze gelijk
+        const startDialogueScene = new Startdialogue();
+        engine.addScene("startDialogue", startDialogueScene);
+        engine.goToScene("startDialogue");
     }
 }
