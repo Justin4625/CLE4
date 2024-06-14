@@ -28,17 +28,54 @@ export class Startdialogue extends Scene {
 
     showCurrentDialogue() {
         const currentText = this.dialogues[this.currentDialogueIndex];
-        const dialogLabel = new Label({
-            text: currentText,
-            pos: new Vector(300, 500), // Vector voor positie
-            font: new Font({
-                size: 20,
-                family: 'Arial',
-            }),
-            color: Color.White,
-        });
+        const maxWidth = 600; // Maximale breedte van de zin
+        const lines = this.splitTextIntoLines(currentText, maxWidth);
 
-        this.add(dialogLabel);
+        // Positie van de eerste regel
+        let posY = 500;
+
+        // Maak een label voor elke regel
+        lines.forEach(line => {
+            const dialogLabel = new Label({
+                text: line,
+                pos: new Vector(400, posY),
+                font: new Font({
+                    size: 20,
+                    family: 'Arial',
+                }),
+                color: Color.White,
+            });
+
+            this.add(dialogLabel);
+            posY += 25; // Verhoog de Y-positie voor de volgende regel
+        });
+    }
+
+    // Functie om tekst op te splitsen in regels op basis van de maximale breedte
+    splitTextIntoLines(text, maxWidth) {
+        const words = text.split(' ');
+        const lines = [];
+        let currentLine = words[0];
+
+        for (let i = 1; i < words.length; i++) {
+            const word = words[i];
+
+            if (this.getTextWidth(currentLine + ' ' + word) < maxWidth) {
+                currentLine += ' ' + word;
+            } else {
+                lines.push(currentLine);
+                currentLine = word;
+            }
+        }
+
+        lines.push(currentLine);
+        return lines;
+    }
+
+    // Functie om de breedte van de tekst te schatten
+    getTextWidth(text) {
+        // Schatting van de breedte op basis van de lengte van de tekststring
+        return text.length * 10; // Dit is een ruwe schatting, afhankelijk van de grootte van je lettertype
     }
 
     nextDialogue() {
