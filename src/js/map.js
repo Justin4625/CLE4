@@ -31,6 +31,6 @@ export class Map extends Scene {
     }
 
     spawnMap() {
-        console.log('hallo');
+        console.log('Je bent nu in de map scene');
     }
 }
