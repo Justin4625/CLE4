@@ -22,14 +22,14 @@ export class Start extends Scene {
             text: 'Start Game',
             pos: new Vector(500, 500), // Positie aangepast om binnen het scherm te passen
             color: Color.White,
-            font: new Font({ 
+            font: new Font({
                 size: 50,
                 bold: true
             }),
         });
 
         this.startLabel.on('pointerup', () => {
-            this.engine.goToScene('map');
+            this.engine.goToScene('startdialogue');
         });
         this.add(this.startLabel);
     }

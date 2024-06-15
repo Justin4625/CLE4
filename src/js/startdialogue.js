@@ -89,7 +89,7 @@ export class Startdialogue extends Scene {
         if (this.currentDialogueIndex < this.dialogues.length) {
             this.showCurrentDialogue();
         } else {
-            this.engine.removeScene(this);
+            this.engine.goToScene('map');
         }
     }
 }
