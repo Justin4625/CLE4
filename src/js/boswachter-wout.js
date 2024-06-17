@@ -1,4 +1,4 @@
-import { Actor, Engine, Vector, SpriteSheet, Animation, Input, Keys } from 'excalibur';
+import { Actor, Vector, SpriteSheet, Animation } from 'excalibur';
 import { Resources } from './resources';
 
 export class Wout extends Actor {
