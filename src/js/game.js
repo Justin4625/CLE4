@@ -23,7 +23,7 @@ export class Game extends Engine {
         this.add('startdialogue', new Startdialogue)
         this.add('map', new Map())
         this.add('end', new End)
-        this.goToScene('end')
+        this.goToScene('map')
     }
 }
 
