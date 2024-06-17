@@ -20,7 +20,7 @@ export class Player extends Actor {
         const keyboard = engine.input.keyboard;
         const gamepads = engine.input.gamepads;
 
-        if (keyboard.isHeld(Keys.W) || keyboard.isHeld(Keys.Up) || gamepads.at(0).isButtonPressed(Buttons.Face1)) {
+        if (keyboard.isHeld(Keys.W) || keyboard.isHeld(Keys.Up) || gamepads.at(0).getAxes(Axes.LeftStickY) > 0.5) {
             if (this.isGrounded) {
                 this.isGrounded = false;
             }
@@ -32,6 +32,11 @@ export class Player extends Actor {
         }
 
         if (keyboard.isHeld(Keys.A) || keyboard.isHeld(Keys.Left) || gamepads.at(0).getAxes(Axes.LeftStickX) < -0.5) {
+            xspeed = -200;
+            // this.sprite.flipHorizontal = false;
+        }
+
+        if (keyboard.isHeld(Keys.S) || keyboard.isHeld(Keys.Down) || gamepads.at(0).getAxes(Axes.LeftStickY) < -0.5) {
             xspeed = -200;
             // this.sprite.flipHorizontal = false;
         }
