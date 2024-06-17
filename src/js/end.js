@@ -21,25 +21,33 @@ export class End extends Scene {
         bg.graphics.use(endScreenImage)
         this.add(bg)
 
-        this.Endmessage = new Label({
-            text: 'Congratulations! You did it!',
-            pos: new Vector(120, 100),
-            color: Color.Red,
-            font: new Font({
-                size: 80,
-                bold: true
-            }),
-        });
-
-        this.Backbutton = new Actor()
-        this.Backbutton.graphics.use(Resources.Backbutton.toSprite())
-        this.Backbutton.pos = new Vector(650, 500)
-        this.add(this.Backbutton)
+        this.congratulationsText()
+        this.youdiditText()
+        this.spawnBackbutton()
 
         this.Backbutton.on('pointerup', () => {
             this.engine.goToScene('start');
         });
+    }
 
-        this.add(this.Endmessage);
+    congratulationsText() {
+        this.congratulations = new Actor()
+        this.congratulations.graphics.use(Resources.Congratulations.toSprite())
+        this.congratulations.pos = new Vector(625, 50)
+        this.add(this.congratulations)
+    }
+
+    youdiditText() {
+        this.youdidit = new Actor()
+        this.youdidit.graphics.use(Resources.Youdidit.toSprite())
+        this.youdidit.pos = new Vector(660, 170)
+        this.add(this.youdidit)
+    }
+
+    spawnBackbutton() {
+        this.Backbutton = new Actor()
+        this.Backbutton.graphics.use(Resources.Backbutton.toSprite())
+        this.Backbutton.pos = new Vector(650, 500)
+        this.add(this.Backbutton)
     }
 }

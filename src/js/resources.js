@@ -7,6 +7,8 @@ const Resources = {
     StartScreen: new ImageSource('images/startscreen.png'),
     Endscreen: new ImageSource('images/endscreen.png'),
     Backbutton: new ImageSource('images/backbutton.png'),
+    Congratulations: new ImageSource('images/congratulations.png'),
+    Youdidit: new ImageSource('images/youdidit.png'),
     // Map: new TiledResource('map/tilemap.tmx'),
     Player: new ImageSource('images/mees-mystkeeper.png'),
     Wout: new ImageSource('images/boswachter-wout.png'),
