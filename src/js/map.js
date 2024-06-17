@@ -24,7 +24,8 @@ export class Map extends Scene {
         // });
         Resources.Map.addToScene(this);
 
-        const player = new Wout
+        const player = new Player
+        player.pos = new Vector(400, 200)
         this.add(player)
     }
 
