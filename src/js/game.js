@@ -5,6 +5,8 @@ import { Start } from './start'
 import { Map } from './map'
 import { Startdialogue } from './startdialogue.js'
 import { End } from './end.js'
+import { Wout } from './boswachter-wout'
+import { Woutdialogue } from './boswachter-wout-dialogue'
 
 export class Game extends Engine {
 
@@ -20,10 +22,11 @@ export class Game extends Engine {
 
     startGame() {
         this.add('start', new Start())
-        this.add('startdialogue', new Startdialogue)
+        this.add('startdialogue', new Startdialogue())
         this.add('map', new Map())
-        this.add('end', new End)
-        this.goToScene('map')
+        this.add('end', new End())
+        this.add('woutDialogue', new Woutdialogue())
+        this.goToScene('start')
     }
 }
 
