@@ -8,6 +8,7 @@ import { End } from './end.js'
 import { Wout } from './boswachter-wout'
 import { Woutdialogue } from './boswachter-wout-dialogue'
 import { Drikdialogue } from './dirk-zeebries-dialogue'
+import { Lithorockdialogue } from './lithorock-dialogue'
 
 export class Game extends Engine {
 
@@ -28,6 +29,7 @@ export class Game extends Engine {
         this.add('end', new End())
         this.add('woutDialogue', new Woutdialogue())
         this.add('dirkDialogue', new Drikdialogue())
+        this.add('lithorockDialogue', new Lithorockdialogue())
         this.goToScene('start')
     }
 }

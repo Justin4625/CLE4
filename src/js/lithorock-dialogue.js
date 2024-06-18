@@ -1,13 +1,13 @@
 import { Scene, Label, Color, Input, Font, Vector, Actor } from "excalibur";
 
-export class Woutdialogue extends Scene {
+export class Lithorockdialogue extends Scene {
     constructor() {
         super();
         this.currentDialogueIndex = 0;
         this.choiceMade = false;
         this.dialogues = [
-            { name: "Wout de Boswachter", text: "Ah, daar ben je! Welkom in het Kralingse Bos. Mijn naam is Wout de Boswachter." },
-            { name: "Wout de Boswachter", text: "Dit is een plek vol wonderen en mysteries. Heb je ooit gehoord van het Earth Artifact?" },
+            { name: "Lithorock", text: "Ah, een avonturier! Welkom in het Kralingse Bos." },
+            { name: "Lithorock", text: "Mijn naam is Lithorck. Wat brengt je hier vandaag?" },
         ];
     }
 
@@ -77,7 +77,7 @@ export class Woutdialogue extends Scene {
         if (this.nameLabel) this.nameLabel.kill();
 
         const nameBoxWidth = name.length * 11 + 20;
-        const nameBoxPosX = 575 - nameBoxWidth / 2;
+        const nameBoxPosX = 475 - nameBoxWidth / 2;
 
         const nameBoxBorder = new Actor({
             pos: new Vector(nameBoxPosX, 507),
@@ -154,9 +154,9 @@ export class Woutdialogue extends Scene {
         this.removeDialogues();
 
         const options = [
-            "Ja, ik heb erover gelezen! Vertel me er meer over.",
-            "Nee, wat is dat precies?",
-            "Huh wat? Aardappelgratin?"
+            "Ik ben op zoek naar informatie over het stone artifact.",
+            "Mooie plek hier, maar ik hoorde dat je iets weet over een speciaal artefact?",
+            "Hoi! Heb je toevallig een steenrijke tip voor mij?"
         ];
 
         this.showOptions(options, this.showDialogue2);
@@ -257,11 +257,17 @@ export class Woutdialogue extends Scene {
         this.choiceMade = false;
 
         this.dialogues = [
-            { name: "Wout de Boswachter", text: "Het Earth Artifact is een eeuwenoud voorwerp, doordrenkt met de krachten van de aarde zelf." },
-            { name: "Wout de Boswachter", text: "Het wordt gezegd dat het werd gemaakt door een oude beschaving die hier lang geleden woonde." },
-            { name: "Wout de Boswachter", text: "Deze mensen waren diep verbonden met de natuur en gebruikten het artifact om de balans en harmonie van het bos te bewaren." },
-            { name: "Wout de Boswachter", text: "Lang geleden, toen de mensen van deze beschaving merkten dat hun krachten afnamen, besloten ze hun kennis en magie op te sluiten in het Earth Artifact." },
-            { name: "Wout de Boswachter", text: "Ze geloofden dat alleen degenen die waardig en in harmonie met de natuur waren, het zouden kunnen gebruiken." },
+            { name: "Lithorock", text: "Een goede vraag! Je bent vast geïnteresseerd in het stone artifact, nietwaar?" },
+            { name: "Lithorock", text: "Het is een fascinerend onderwerp. Laten we eens diep in de geschiedenis duiken, net zoals je een schat zou opgraven." },
+            { name: "Lithorock", text: "En zeg eens, waarom zijn rotsen zo goed in wiskunde?" },
+            { name: "Lithorock", text: "Ze hebben altijd de juiste 'angle'!" },
+            { name: "Lithorock", text: "Lang geleden, in de vroege dagen van deze regio, toen het Kralingse Bos nog jong was en de bomen zich uitstrekten als de armen van reuzen, leefde er een stam van bekwame steenbewerkers." },
+            { name: "Lithorock", text: "Ze geloofden dat elke steen een ziel had en dat sommige stenen magische krachten bezaten." },
+            { name: "Lithorock", text: "Ze noemden deze bijzondere stenen levensstenen." },
+            { name: "Lithorock", text: "De stam ontdekte een enorm rotsblok aan de oever van de Kralingse Plas." },
+            { name: "Lithorock", text: "Het was geen gewone steen; het had een vreemde, bijna etherische gloed." },
+            { name: "Lithorock", text: "Ze besloten dat deze steen iets speciaals moest zijn, een geschenk van de aarde zelf." },
+            { name: "Lithorock", text: "Ze begonnen het rotsblok zorgvuldig te bewerken, met rituelen en gebeden, en na jaren van toewijding ontstond het stone artifact." },
         ];
         this.currentDialogueIndex = 0;
         this.showCurrentDialogue();
@@ -289,9 +295,9 @@ export class Woutdialogue extends Scene {
         this.removeDialogues();
 
         const options = [
-            "Hoe kon deze beschaving zo’n krachtige artefact maken?",
-            "Dus een steen met glitters?",
-            "Wat gebeurde er met de beschaving die het maakte?"
+            "Als ze die steen verkeerd hakte, hadden ze dan rotsen in hun maag?",
+            "Dat klinkt ongelooflijk! Wat voor rituelen voerden ze uit?",
+            "Wacht even, je zegt dat stenen zielen hebben? Hoe werkt dat precies?"
         ];
 
         this.showOptions(options, this.showDialogue3);
@@ -301,13 +307,14 @@ export class Woutdialogue extends Scene {
         this.choiceMade = false;
 
         this.dialogues = [
-            { name: "Wout de Boswachter", text: "Deze beschaving was heel speciaal." },
-            { name: "Wout de Boswachter", text: "Ze hadden een diep begrip van de natuur en haar krachten." },
-            { name: "Wout de Boswachter", text: "Ze werkten samen met de elementen, gebruikten oude rituelen en kennis die nu verloren is gegaan." },
-            { name: "Wout de Boswachter", text: "Het artifact was hun meesterwerk, een symbool van hun verbinding met de aarde." },
-            { name: "Wout de Boswachter", text: "Helaas, zoals bij veel oude beschavingen, ging hun kennis verloren door de tijd." },
-            { name: "Wout de Boswachter", text: "Sommigen zeggen dat ze werden opgeslokt door de natuur zelf, anderen geloven dat ze eenvoudigweg verdwenen." },
-            { name: "Wout de Boswachter", text: "Maar hun nalatenschap leeft voort in het Earth Artifact." },
+            { name: "Lithorock", text: "Rituelen die dagen duurden!" },
+            { name: "Lithorock", text: "Ze geloofden dat door te zingen en te dansen rond de steen, ze de geest van de steen konden oproepen en zijn magische krachten konden activeren." },
+            { name: "Lithorock", text: "Er werd gezegd dat het artefact voorspellende krachten had, en dat het de stam kon beschermen tegen kwade geesten en rampen." },
+            { name: "Lithorock", text: "En weet je waarom ze de steen nooit kwijtraakten?" },
+            { name: "Lithorock", text: "Hij was altijd rotsvast op zijn plaats!" },
+            { name: "Lithorock", text: "De stamhoofden gebruikten het artefact tijdens belangrijke ceremonies." },
+            { name: "Lithorock", text: "Ze hielden het vast en er werd gezegd dat het hen visioenen gaf van de toekomst." },
+            { name: "Lithorock", text: "De legende vertelt dat toen een grote vloed dreigde, de stam het artefact raadpleegde en zo op tijd wist te evacueren." },
         ];
         this.currentDialogueIndex = 0;
         this.showCurrentDialogue();
@@ -332,9 +339,9 @@ export class Woutdialogue extends Scene {
         this.removeDialogues();
 
         const options = [
-            "Wat kan het artifact precies doen?",
-            "Is het te koop op Ebay?",
-            "Zijn er legenden over mensen die het artifact gebruikten?"
+            "Heeft iemand ooit geprobeerd het artefact te stelen?",
+            "Stel je voor, een steen die je toekomst kan vertellen! Dat is pas een rotsvast verhaal.",
+            "Fascinerend! Wat is er uiteindelijk met de stam en het artefact gebeurd?"
         ];
 
         this.showOptions(options, this.showDialogue4);
@@ -344,13 +351,13 @@ export class Woutdialogue extends Scene {
         this.choiceMade = false;
 
         this.dialogues = [
-            { name: "Wout de Boswachter", text: "Het Earth Artifact heeft de kracht om het evenwicht in de natuur te herstellen." },
-            { name: "Wout de Boswachter", text: "Het kan gewassen laten groeien, ziektes genezen en zelfs het weer beïnvloeden." },
-            { name: "Wout de Boswachter", text: "Maar de kracht komt niet zonder verantwoordelijkheid." },
-            { name: "Wout de Boswachter", text: "Alleen degenen die pure intenties hebben en het welzijn van het bos vooropstellen, kunnen de volledige kracht van het artifact benutten." },
-            { name: "Wout de Boswachter", text: "Er zijn verhalen van mensen die hebzuchtig waren en het artifact voor hun eigen gewin wilden gebruiken." },
-            { name: "Wout de Boswachter", text: "Ze werden altijd afgestraft door de krachten van de natuur zelf." },
-            { name: "Wout de Boswachter", text: "Het is een krachtige herinnering dat we respect moeten hebben voor de aarde en alles wat ze ons geeft." },
+            { name: "Lithorock", text: "Na vele jaren van voorspoed gebeurde er iets onverwachts." },
+            { name: "Lithorock", text: "Een rivaliserende stam, jaloers op de macht en rijkdom die het artefact bracht, probeerde het te stelen." },
+            { name: "Lithorock", text: "Nu wacht het op iemand die het waardig is om zijn krachten opnieuw te ontketenen." },
+            { name: "Lithorock", text: "De oorspronkelijke stam verdween langzaam, verslagen en zonder hun kostbare artefact." },
+            { name: "Lithorock", text: "Maar hun verhalen leven voort, en de magie van de steen wordt nog steeds gevreesd en gerespecteerd." },
+            { name: "Lithorock", text: "En weet je wat ze zeggen over het artefact?" },
+            { name: "Lithorock", text: "Het is geen gewoon verhaal, het is steen voor steen opgebouwd!" },
         ];
         this.currentDialogueIndex = 0;
         this.showCurrentDialogue();
@@ -375,9 +382,9 @@ export class Woutdialogue extends Scene {
         this.removeDialogues();
 
         const options = [
-            "Ik ben een bomenknuffelaar, is dat goed genoeg?",
-            "Zijn er recentelijk nog mensen geweest die het geprobeerd hebben?",
-            "Hoe weet je of iemand waardig is om het artifact te gebruiken?"
+            "Wat een verhaal! Denk je dat het artefact nog steeds kracht heeft?",
+            "Heb je ooit iemand ontmoet die beweert het artefact te hebben gezien?",
+            "Dus ik kan een steengoed souvenir vinden?"
         ];
 
         this.showOptions(options, this.showDialogue5);
@@ -387,13 +394,15 @@ export class Woutdialogue extends Scene {
         this.choiceMade = false;
 
         this.dialogues = [
-            { name: "Wout de Boswachter", text: "Dat is een goede vraag." },
-            { name: "Wout de Boswachter", text: "Er zijn oude rituelen en proeven die men moet doorstaan om de waardigheid te bewijzen." },
-            { name: "Wout de Boswachter", text: "Deze rituelen zijn zorgvuldig bewaard gebleven door de boswachters en wijzen van het Kralingse Bos." },
-            { name: "Wout de Boswachter", text: "Alleen zij kennen de geheimen en kunnen de testen afnemen." },
-            { name: "Wout de Boswachter", text: "En ja, er zijn inderdaad mensen geweest die het geprobeerd hebben." },
-            { name: "Wout de Boswachter", text: "Sommigen van hen hebben hun leven gewijd aan het beschermen van het bos, terwijl anderen faalden en de kracht van het artifact niet konden bevatten." },
-            { name: "Wout de Boswachter", text: "Het blijft een mysterie wie echt waardig zal zijn." },
+            { name: "Lithorock", text: "Misschien wel! Het zou een zeer speciaal souvenir zijn, dat kan ik je verzekeren." },
+            { name: "Lithorock", text: "Wat betreft de kracht van het artefact, wie weet?" },
+            { name: "Lithorock", text: "Magie is een vreemd en mysterieus iets. Het kan sluimeren, wachtend op de juiste persoon om het weer te wekken." },
+            { name: "Lithorock", text: "En ja, er zijn altijd verhalen van mensen die zeggen dat ze iets ongewoons hebben gezien in de plas, maar bewijs is er nooit." },
+            { name: "Lithorock", text: "Misschien ben jij degene die het artefact zal vinden en zijn geheimen zal onthullen." },
+            { name: "Lithorock", text: "Vergeet niet, als je de plas ingaat: blijf altijd rotsvast op je voeten!" },
+            { name: "Lithorock", text: "Dus, als je ooit een steentje in je schoen voelt terwijl je in het bos wandelt, wees niet boos." },
+            { name: "Lithorock", text: "Het zou wel eens het begin kunnen zijn van een groot avontuur." },
+            { name: "Lithorock", text: "En vergeet niet: zelfs de kleinste steen kan de grootste rimpelingen veroorzaken." },
         ];
         this.currentDialogueIndex = 0;
         this.showCurrentDialogue();
@@ -407,89 +416,7 @@ export class Woutdialogue extends Scene {
                     this.nextDialogue();
                 } else {
                     if (!this.choiceMade) {
-                        this.showChoiceOptions5();
-                    }
-                }
-            }
-        });
-    }
-
-    showChoiceOptions5() {
-        this.removeDialogues();
-
-        const options = [
-            "Denk je dat ik het kan proberen?",
-            "Hoe word ik een van die beschermers van het bos?",
-            "Nog waardiger dan ik al ben?"
-        ];
-
-        this.showOptions(options, this.showDialogue6);
-    }
-
-    showDialogue6() {
-        this.choiceMade = false;
-
-        this.dialogues = [
-            { name: "Wout de Boswachter", text: "Wie weet? Misschien zit het lot wel in jouw handen." },
-            { name: "Wout de Boswachter", text: "Maar onthoud, het gaat niet om de kracht, maar om de intentie waarmee je handelt." },
-            { name: "Wout de Boswachter", text: "Als je echt het bos en de natuur wilt beschermen, zou je wel eens waardig kunnen zijn." },
-            { name: "Wout de Boswachter", text: "Het begint allemaal met respect en liefde voor de natuur." },
-            { name: "Wout de Boswachter", text: "Door te zorgen voor het bos, de dieren en alles wat hierin leeft, bewijs je je waarde." },
-            { name: "Wout de Boswachter", text: "Wie weet, misschien zal het Earth Artifact op een dag voor je openen en je zijn geheimen onthullen." },
-        ];
-        this.currentDialogueIndex = 0;
-        this.showCurrentDialogue();
-
-        this.engine.input.keyboard.off('press'); // Verwijder alle vorige keyboard event listeners
-
-        // Check if all dialogues have been shown before displaying additional choice options
-        this.engine.input.keyboard.on('press', (evt) => {
-            if (evt.key === Input.Keys.Space) {
-                if (this.currentDialogueIndex < this.dialogues.length - 1) {
-                    this.nextDialogue();
-                } else {
-                    if (!this.choiceMade) {
-                        this.showChoiceOptions6();
-                    }
-                }
-            }
-        });
-    }
-
-    showChoiceOptions6() {
-        this.removeDialogues();
-
-        const options = [
-            "Dank je, Wout. Ik zal mijn best doen!",
-            "Weet je, ik denk dat bomen echt mijn vrienden zijn.",
-            "Ik ben klaar voor het avontuur. Waar moet ik beginnen?"
-        ];
-
-        this.showOptions(options, this.showDialogue7);
-    }
-
-    showDialogue7() {
-        this.choiceMade = false;
-
-        this.dialogues = [
-            { name: "Wout de Boswachter", text: "Dat is de geest! Ga, ontdek en bescherm." },
-            { name: "Wout de Boswachter", text: "Het Kralingse Bos heeft altijd behoefte aan meer dappere zielen zoals jij." },
-            { name: "Wout de Boswachter", text: "Vergeet niet, de natuur is je bondgenoot en zal je leiden op je pad." },
-            { name: "Wout de Boswachter", text: "Veel succes, en moge het Earth Artifact ooit zijn geheimen aan je onthullen." },
-        ];
-        this.currentDialogueIndex = 0;
-        this.showCurrentDialogue();
-
-        this.engine.input.keyboard.off('press'); // Verwijder alle vorige keyboard event listeners
-
-        // Check if all dialogues have been shown before displaying additional choice options
-        this.engine.input.keyboard.on('press', (evt) => {
-            if (evt.key === Input.Keys.Space) {
-                if (this.currentDialogueIndex < this.dialogues.length - 1) {
-                    this.nextDialogue();
-                } else {
-                    if (!this.choiceMade) {
-                        this.showChoiceOptions6();
+                        this.showChoiceOptions4();
                     }
                 }
             }

@@ -175,7 +175,7 @@ export class Drikdialogue extends Scene {
         options.forEach((option, index) => {
             let optionText = `${index + 1}. `;
 
-            if (index === 1 || index === 2 || index === 3) {
+            if (index === 0 || index === 1 || index === 2) {
                 optionText += this.wrapText(option, maxWidth);
             } else {
                 optionText += option;
