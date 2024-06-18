@@ -6,6 +6,8 @@ import { Lithorock } from "./lithorock";
 import { vector } from "excalibur/build/dist/Util/DrawUtil";
 import { Resources } from "./resources";
 import { Wout } from "./boswachter-wout";
+import { Dirk } from "./dirk-zeebries";
+import { Elara } from "./elara-mystveil";
 
 
 export class Map extends Scene {
@@ -28,7 +30,21 @@ export class Map extends Scene {
         player.pos = new Vector(440, 2530)
         this.add(player)
 
+        const wout = new Wout
+        this.add(wout)
+
+        const dirk = new Dirk
+        this.add(dirk)
+
+        const elara = new Elara
+        this.add(elara)
+
+        const lithorock = new Lithorock
+        this.add(lithorock)
+
+
         engine.currentScene.camera.strategy.lockToActor(player);
+        engine.currentScene.camera.zoom = 2.5;
     }
 
     onPostUpdate() {
