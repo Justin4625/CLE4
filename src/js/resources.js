@@ -14,7 +14,8 @@ const Resources = {
     Wout: new ImageSource('images/boswachter-wout.png'),
     Dirk: new ImageSource('images/dirk-zeebries.png'),
     Elara: new ImageSource('images/elara-mystveil.png'),
-    Lithorock: new ImageSource('images/lithorock.png')
+    Lithorock: new ImageSource('images/lithorock.png'),
+    Test: new ImageSource('images/16x16.png')
 }
 
 const ResourceLoader = new Loader()

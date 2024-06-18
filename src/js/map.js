@@ -27,6 +27,8 @@ export class Map extends Scene {
         const player = new Player
         player.pos = new Vector(400, 200)
         this.add(player)
+
+        engine.currentScene.camera.strategy.lockToActor(player);
     }
 
     onPostUpdate() {
