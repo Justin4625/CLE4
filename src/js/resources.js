@@ -11,6 +11,7 @@ const Resources = {
     Youdidit: new ImageSource('images/youdidit.png'),
     Map: new TiledResource('map/tilemap.tmx'),
     PlayerM: new ImageSource('images/mees-mystkeeper.png'),
+    PlayerF: new ImageSource('images/alice-mystkeeper.png'),
     Wout: new ImageSource('images/boswachter-wout.png'),
     Dirk: new ImageSource('images/dirk-zeebries.png'),
     Elara: new ImageSource('images/elara-mystveil.png'),
