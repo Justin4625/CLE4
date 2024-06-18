@@ -8,8 +8,8 @@ export class Player extends Actor {
     constructor(x, y) {
         super({
             pos: new Vector(x, y),
-            width: Resources.Player.width / 2,
-            height: Resources.Player.height / 2,
+            width: 16, /* Resources.Player.width / 2 */
+            height: 16, /* Resources.Player.width / 2 */
             collisionType: CollisionType.Active
         });
         this.isGrounded = false;
