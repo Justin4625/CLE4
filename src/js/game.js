@@ -7,6 +7,7 @@ import { Startdialogue } from './startdialogue.js'
 import { End } from './end.js'
 import { Wout } from './boswachter-wout'
 import { Woutdialogue } from './boswachter-wout-dialogue'
+import { Drikdialogue } from './dirk-zeebries-dialogue'
 
 export class Game extends Engine {
 
@@ -26,6 +27,7 @@ export class Game extends Engine {
         this.add('map', new Map())
         this.add('end', new End())
         this.add('woutDialogue', new Woutdialogue())
+        this.add('dirkDialogue', new Drikdialogue())
         this.goToScene('start')
     }
 }

@@ -29,7 +29,7 @@ export class Start extends Scene {
         });
 
         this.startLabel.on('pointerup', () => {
-            this.engine.goToScene('map');
+            this.engine.goToScene('dirkDialogue');
         });
         this.add(this.startLabel);
     }

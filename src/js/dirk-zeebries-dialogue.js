@@ -1,13 +1,16 @@
 import { Scene, Label, Color, Input, Font, Vector, Actor } from "excalibur";
 
-export class Woutdialogue extends Scene {
+export class Drikdialogue extends Scene {
     constructor() {
         super();
         this.currentDialogueIndex = 0;
         this.choiceMade = false;
         this.dialogues = [
-            { name: "Wout de Boswachter", text: "Ah, daar ben je! Welkom in het Kralingse Bos. Mijn naam is Wout de Boswachter." },
-            { name: "Wout de Boswachter", text: "Dit is een plek vol wonderen en mysteries. Heb je ooit gehoord van het Earth Artifact?" },
+            { name: "Dirk Zeebries", text: "Yo, een reiziger! Kom dichterbij, man." },
+            { name: "Dirk Zeebries", text: "Het lijkt erop dat je iets zoekt, nietwaar?" },
+            { name: "Dirk Zeebries", text: "Yo, je hebt geluk dat je mij hebt gevonden." },
+            { name: "Dirk Zeebries", text: "Ik ben Dirk Zeebries, kenner van de geheimen van dit bos." },
+            { name: "Dirk Zeebries", text: "Yo, wat wil je weten, dude?" },
         ];
     }
 
@@ -77,7 +80,7 @@ export class Woutdialogue extends Scene {
         if (this.nameLabel) this.nameLabel.kill();
 
         const nameBoxWidth = name.length * 11 + 20;
-        const nameBoxPosX = 575 - nameBoxWidth / 2;
+        const nameBoxPosX = 520 - nameBoxWidth / 2;
 
         const nameBoxBorder = new Actor({
             pos: new Vector(nameBoxPosX, 507),
@@ -154,9 +157,9 @@ export class Woutdialogue extends Scene {
         this.removeDialogues();
 
         const options = [
-            "Ja, ik heb erover gelezen! Vertel me er meer over.",
-            "Nee, wat is dat precies?",
-            "Huh wat? Aardappelgratin?"
+            "Yo Dirk, vertel me alles over dat water artifact.",
+            "Yo, ben jij de baas van die mysterieuze waterkracht?",
+            "Yo, heb je ooit een vis met een water artifact zien zwemmen?"
         ];
 
         this.showOptions(options, this.showDialogue2);
@@ -257,11 +260,14 @@ export class Woutdialogue extends Scene {
         this.choiceMade = false;
 
         this.dialogues = [
-            { name: "Wout de Boswachter", text: "Het Earth Artifact is een eeuwenoud voorwerp, doordrenkt met de krachten van de aarde zelf." },
-            { name: "Wout de Boswachter", text: "Het wordt gezegd dat het werd gemaakt door een oude beschaving die hier lang geleden woonde." },
-            { name: "Wout de Boswachter", text: "Deze mensen waren diep verbonden met de natuur en gebruikten het artifact om de balans en harmonie van het bos te bewaren." },
-            { name: "Wout de Boswachter", text: "Lang geleden, toen de mensen van deze beschaving merkten dat hun krachten afnamen, besloten ze hun kennis en magie op te sluiten in het Earth Artifact." },
-            { name: "Wout de Boswachter", text: "Ze geloofden dat alleen degenen die waardig en in harmonie met de natuur waren, het zouden kunnen gebruiken." },
+            { name: "Dirk Zeebries", text: "Yo, het water artifact, dat is een chill verhaal, man!" },
+            { name: "Dirk Zeebries", text: "Luister goed, want dit is een verhaal dat teruggaat tot de tijd dat de wereld nog jong was." },
+            { name: "Dirk Zeebries", text: "Het artifact werd gecreëerd door de oude watermagiërs, meesters van de elementaire krachten." },
+            { name: "Dirk Zeebries", text: "Yo, zij putten hun energie uit de diepe wateren van de Kralingse Plas, waar het artifact tot op de dag van vandaag verborgen ligt, dude." },
+            { name: "Dirk Zeebries", text: "Yo, het artifact zelf is gemaakt van een zeldzaam kristal, doordrenkt met de essentie van zuiver water." },
+            { name: "Dirk Zeebries", text: "Die magiërs dachten dat dit kristal de kracht had om water te manipuleren en zelfs leven te schenken aan de dorre aarde." },
+            { name: "Dirk Zeebries", text: "Maar yo, met zo'n kracht komt ook gevaar." },
+            { name: "Dirk Zeebries", text: "Velen hebben geprobeerd het artifact te pakken te krijgen, maar slechts weinigen zijn geslaagd, man." },
         ];
         this.currentDialogueIndex = 0;
         this.showCurrentDialogue();
@@ -289,9 +295,9 @@ export class Woutdialogue extends Scene {
         this.removeDialogues();
 
         const options = [
-            "Hoe kon deze beschaving zo’n krachtige artefact maken?",
-            "Dus een steen met glitters?",
-            "Wat gebeurde er met de beschaving die het maakte?"
+            "Vergelijkbaar met Finding Nemo?",
+            "Zijn er gevaren die dat artifact beschermen?",
+            "Yo, wie heeft dat ding voor het laatst gezien?"
         ];
 
         this.showOptions(options, this.showDialogue3);
@@ -301,13 +307,14 @@ export class Woutdialogue extends Scene {
         this.choiceMade = false;
 
         this.dialogues = [
-            { name: "Wout de Boswachter", text: "Deze beschaving was heel speciaal." },
-            { name: "Wout de Boswachter", text: "Ze hadden een diep begrip van de natuur en haar krachten." },
-            { name: "Wout de Boswachter", text: "Ze werkten samen met de elementen, gebruikten oude rituelen en kennis die nu verloren is gegaan." },
-            { name: "Wout de Boswachter", text: "Het artifact was hun meesterwerk, een symbool van hun verbinding met de aarde." },
-            { name: "Wout de Boswachter", text: "Helaas, zoals bij veel oude beschavingen, ging hun kennis verloren door de tijd." },
-            { name: "Wout de Boswachter", text: "Sommigen zeggen dat ze werden opgeslokt door de natuur zelf, anderen geloven dat ze eenvoudigweg verdwenen." },
-            { name: "Wout de Boswachter", text: "Maar hun nalatenschap leeft voort in het Earth Artifact." },
+            { name: "Dirk Zeebries", text: "Yo, inderdaad, de laatste persoon die het artifact heeft gezien, was een machtige magiër genaamd Elvira de Aquatische." },
+            { name: "Dirk Zeebries", text: "Zij wist de ware potentie van het artifact te benutten en gebruikte het om haar volk te beschermen tegen een grote droogte." },
+            { name: "Dirk Zeebries", text: "Maar yo, Elvira verdween op mysterieuze wijze, en met haar verdween ook het artifact." },
+            { name: "Dirk Zeebries", text: "Sommigen zeggen dat ze is opgenomen in het water zelf, haar geest eeuwig verbonden met de Kralingse Plas, dude." },
+            { name: "Dirk Zeebries", text: "Yo, wat betreft de gevaren, ja, die zijn er volop." },
+            { name: "Dirk Zeebries", text: "Het artifact wordt bewaakt door oude beschermers, watergeesten die loyaler zijn dan de trouwste wachter." },
+            { name: "Dirk Zeebries", text: "Yo, ze zullen alles doen om te voorkomen dat onwaardige handen het artifact bemachtigen." },
+            { name: "Dirk Zeebries", text: "Er wordt gezegd dat de plas zelf je zal opslokken als je te dichtbij komt zonder de juiste voorbereidingen, man." },
         ];
         this.currentDialogueIndex = 0;
         this.showCurrentDialogue();
@@ -332,9 +339,9 @@ export class Woutdialogue extends Scene {
         this.removeDialogues();
 
         const options = [
-            "Wat kan het artifact precies doen?",
-            "Is het te koop op Ebay?",
-            "Zijn er legenden over mensen die het artifact gebruikten?"
+            "Hoe kan ik me voorbereiden om dat artifact te vinden?",
+            "Moet ik een snorkel meenemen?",
+            "Zijn er aanwijzingen in het bos die naar dat artifact leiden?"
         ];
 
         this.showOptions(options, this.showDialogue4);
@@ -344,13 +351,10 @@ export class Woutdialogue extends Scene {
         this.choiceMade = false;
 
         this.dialogues = [
-            { name: "Wout de Boswachter", text: "Het Earth Artifact heeft de kracht om het evenwicht in de natuur te herstellen." },
-            { name: "Wout de Boswachter", text: "Het kan gewassen laten groeien, ziektes genezen en zelfs het weer beïnvloeden." },
-            { name: "Wout de Boswachter", text: "Maar de kracht komt niet zonder verantwoordelijkheid." },
-            { name: "Wout de Boswachter", text: "Alleen degenen die pure intenties hebben en het welzijn van het bos vooropstellen, kunnen de volledige kracht van het artifact benutten." },
-            { name: "Wout de Boswachter", text: "Er zijn verhalen van mensen die hebzuchtig waren en het artifact voor hun eigen gewin wilden gebruiken." },
-            { name: "Wout de Boswachter", text: "Ze werden altijd afgestraft door de krachten van de natuur zelf." },
-            { name: "Wout de Boswachter", text: "Het is een krachtige herinnering dat we respect moeten hebben voor de aarde en alles wat ze ons geeft." },
+            { name: "Dirk Zeebries", text: "Yo, voorbereiding is de sleutel, dude." },
+            { name: "Dirk Zeebries", text: "Yo, maar pas op, niet alles is wat het lijkt in dit bos." },
+            { name: "Dirk Zeebries", text: "De geesten van de plas kunnen je ook misleiden als ze denken dat je kwade bedoelingen hebt." },
+            { name: "Dirk Zeebries", text: "Yo, wees respectvol en voorzichtig in je zoektocht, en misschien, heel misschien, zal het artifact zichzelf aan je onthullen, dude." },
         ];
         this.currentDialogueIndex = 0;
         this.showCurrentDialogue();
@@ -375,9 +379,9 @@ export class Woutdialogue extends Scene {
         this.removeDialogues();
 
         const options = [
-            "Ik ben een bomenknuffelaar, is dat goed genoeg?",
-            "Zijn er recentelijk nog mensen geweest die het geprobeerd hebben?",
-            "Hoe weet je of iemand waardig is om het artifact te gebruiken?"
+            "Tijd om de golven te temmen, yo!",
+            "Thanks, Dirk. Ik ga je advies volgen.",
+            "Yo, dit klinkt als een avontuur dat ik niet kan missen."
         ];
 
         this.showOptions(options, this.showDialogue5);
@@ -387,13 +391,10 @@ export class Woutdialogue extends Scene {
         this.choiceMade = false;
 
         this.dialogues = [
-            { name: "Wout de Boswachter", text: "Dat is een goede vraag." },
-            { name: "Wout de Boswachter", text: "Er zijn oude rituelen en proeven die men moet doorstaan om de waardigheid te bewijzen." },
-            { name: "Wout de Boswachter", text: "Deze rituelen zijn zorgvuldig bewaard gebleven door de boswachters en wijzen van het Kralingse Bos." },
-            { name: "Wout de Boswachter", text: "Alleen zij kennen de geheimen en kunnen de testen afnemen." },
-            { name: "Wout de Boswachter", text: "En ja, er zijn inderdaad mensen geweest die het geprobeerd hebben." },
-            { name: "Wout de Boswachter", text: "Sommigen van hen hebben hun leven gewijd aan het beschermen van het bos, terwijl anderen faalden en de kracht van het artifact niet konden bevatten." },
-            { name: "Wout de Boswachter", text: "Het blijft een mysterie wie echt waardig zal zijn." },
+            { name: "Dirk Zeebries", text: "Yo, heel goed, reiziger. Moge de krachten van het water je leiden en beschermen." },
+            { name: "Dirk Zeebries", text: "En vergeet niet, soms is het antwoord dat je zoekt dichterbij dan je denkt." },
+            { name: "Dirk Zeebries", text: "Yo, het artifact wacht op degene die het waard is." },
+            { name: "Dirk Zeebries", text: "Veel geluk, en moge de stroom je gunstig gezind zijn, man." },
         ];
         this.currentDialogueIndex = 0;
         this.showCurrentDialogue();
@@ -407,89 +408,7 @@ export class Woutdialogue extends Scene {
                     this.nextDialogue();
                 } else {
                     if (!this.choiceMade) {
-                        this.showChoiceOptions5();
-                    }
-                }
-            }
-        });
-    }
-
-    showChoiceOptions5() {
-        this.removeDialogues();
-
-        const options = [
-            "Denk je dat ik het kan proberen?",
-            "Hoe word ik een van die beschermers van het bos?",
-            "Nog waardiger dan ik al ben?"
-        ];
-
-        this.showOptions(options, this.showDialogue6);
-    }
-
-    showDialogue6() {
-        this.choiceMade = false;
-
-        this.dialogues = [
-            { name: "Wout de Boswachter", text: "Wie weet? Misschien zit het lot wel in jouw handen." },
-            { name: "Wout de Boswachter", text: "Maar onthoud, het gaat niet om de kracht, maar om de intentie waarmee je handelt." },
-            { name: "Wout de Boswachter", text: "Als je echt het bos en de natuur wilt beschermen, zou je wel eens waardig kunnen zijn." },
-            { name: "Wout de Boswachter", text: "Het begint allemaal met respect en liefde voor de natuur." },
-            { name: "Wout de Boswachter", text: "Door te zorgen voor het bos, de dieren en alles wat hierin leeft, bewijs je je waarde." },
-            { name: "Wout de Boswachter", text: "Wie weet, misschien zal het Earth Artifact op een dag voor je openen en je zijn geheimen onthullen." },
-        ];
-        this.currentDialogueIndex = 0;
-        this.showCurrentDialogue();
-
-        this.engine.input.keyboard.off('press'); // Verwijder alle vorige keyboard event listeners
-
-        // Check if all dialogues have been shown before displaying additional choice options
-        this.engine.input.keyboard.on('press', (evt) => {
-            if (evt.key === Input.Keys.Space) {
-                if (this.currentDialogueIndex < this.dialogues.length - 1) {
-                    this.nextDialogue();
-                } else {
-                    if (!this.choiceMade) {
-                        this.showChoiceOptions6();
-                    }
-                }
-            }
-        });
-    }
-
-    showChoiceOptions6() {
-        this.removeDialogues();
-
-        const options = [
-            "Dank je, Wout. Ik zal mijn best doen!",
-            "Weet je, ik denk dat bomen echt mijn vrienden zijn.",
-            "Ik ben klaar voor het avontuur. Waar moet ik beginnen?"
-        ];
-
-        this.showOptions(options, this.showDialogue7);
-    }
-
-    showDialogue7() {
-        this.choiceMade = false;
-
-        this.dialogues = [
-            { name: "Wout de Boswachter", text: "Dat is de geest! Ga, ontdek en bescherm." },
-            { name: "Wout de Boswachter", text: "Het Kralingse Bos heeft altijd behoefte aan meer dappere zielen zoals jij." },
-            { name: "Wout de Boswachter", text: "Vergeet niet, de natuur is je bondgenoot en zal je leiden op je pad." },
-            { name: "Wout de Boswachter", text: "Veel succes, en moge het Earth Artifact ooit zijn geheimen aan je onthullen." },
-        ];
-        this.currentDialogueIndex = 0;
-        this.showCurrentDialogue();
-
-        this.engine.input.keyboard.off('press'); // Verwijder alle vorige keyboard event listeners
-
-        // Check if all dialogues have been shown before displaying additional choice options
-        this.engine.input.keyboard.on('press', (evt) => {
-            if (evt.key === Input.Keys.Space) {
-                if (this.currentDialogueIndex < this.dialogues.length - 1) {
-                    this.nextDialogue();
-                } else {
-                    if (!this.choiceMade) {
-                        this.showChoiceOptions6();
+                        this.showChoiceOptions4();
                     }
                 }
             }
