@@ -31,21 +31,21 @@ export class Player extends Actor {
             if (this.isGrounded) {
                 this.isGrounded = false;
             }
-            yspeed = -200;
+            yspeed = -150;
         }
 
         if (keyboard.isHeld(Keys.D) || keyboard.isHeld(Keys.Right) || gamepads.at(0).getAxes(Axes.LeftStickX) > 0.5) {
-            xspeed = 200;
+            xspeed = 150;
             // this.sprite.flipHorizontal = true;
         }
 
         if (keyboard.isHeld(Keys.A) || keyboard.isHeld(Keys.Left) || gamepads.at(0).getAxes(Axes.LeftStickX) < -0.5) {
-            xspeed = -200;
+            xspeed = -150;
             // this.sprite.flipHorizontal = false;
         }
 
         if (keyboard.isHeld(Keys.S) || keyboard.isHeld(Keys.Down) || gamepads.at(0).getAxes(Axes.LeftStickY) < -0.5) {
-            yspeed = 200;
+            yspeed = 150;
             // this.sprite.flipHorizontal = false;
         }
 
