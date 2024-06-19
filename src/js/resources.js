@@ -19,7 +19,9 @@ const Resources = {
     Test: new ImageSource('images/16x16.png'),
     Themesong: new Sound('sounds/themesong.mp3'),
     Earthartifact: new ImageSource('images/earthartifact.png'),
-    Waterartifact: new ImageSource('images/waterartifact.png')
+    Waterartifact: new ImageSource('images/waterartifact.png'),
+    Rockartifact: new ImageSource('images/rockartifact.png'),
+    Mysteryartifact: new ImageSource('images/mysteryartifact.png')
 
 }
 
