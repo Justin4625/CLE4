@@ -1,5 +1,11 @@
 import { Actor, Axes, Buttons, CollisionType, Input, Keys, Vector } from "excalibur";
 import { Resources } from "./resources";
+import { Elaradialogue } from "./elara-mystveil-dialogue";
+import { Elara } from "./elara-mystveil";
+import { Wout } from "./boswachter-wout";
+import { Dirk } from "./dirk-zeebries";
+import { Woutdialogue } from "./boswachter-wout-dialogue";
+import { Drikdialogue } from "./dirk-zeebries-dialogue";
 
 export class Player extends Actor {
 
@@ -13,6 +19,31 @@ export class Player extends Actor {
             collisionType: CollisionType.Active
         });
         this.isGrounded = false;
+    }
+    onInitialize(engine) {
+        this.sprite = Resources.Test.toSprite();
+        this.graphics.use(this.sprite);
+
+        this.on("collisionstart", (event) => this.onCollide(event));
+    }
+
+    onCollide(event) {
+        if (event.other instanceof Elara) {
+            console.log("Collision with Elara detected");
+            this.startDialogue(Elaradialogue);
+        } else if (event.other instanceof Wout) {
+            console.log("Collision with Wout detected");
+            this.startDialogue(Woutdialogue);
+        } else if (event.other instanceof Dirk) {
+            console.log("Collision with Dirk detected");
+            this.startDialogue(Drikdialogue);
+        }
+    }
+
+    startDialogue(dialogueClass) {
+        const dialogue = new dialogueClass();
+    
+        dialogue.showCurrentDialogue();
     }
 
     onPreUpdate(engine, delta) {

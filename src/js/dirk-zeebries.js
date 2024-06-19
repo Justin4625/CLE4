@@ -1,9 +1,14 @@
-import { Actor, Vector, SpriteSheet, Animation } from 'excalibur';
+import { Actor, Vector, SpriteSheet, Animation, CollisionType } from 'excalibur';
 import { Resources } from './resources';
 
 export class Dirk extends Actor {
     constructor() {
-        super();
+        super({
+            pos: new Vector(0, 0),
+            width: 32,
+            height: 32,
+            collisionType: CollisionType.Fixed 
+        });
         const idleSheet = SpriteSheet.fromImageSource({
             image: Resources.Dirk,
             grid: { rows: 1, columns: 2, spriteWidth: 498, spriteHeight: 498 }
