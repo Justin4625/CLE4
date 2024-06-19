@@ -32,5 +32,10 @@ export class Start extends Scene {
             this.engine.goToScene('startdialogue');
         });
         this.add(this.startLabel);
+
+        Resources.Themesong.stop();
+        Resources.Themesong.play();
+        Resources.Themesong.loop = true;
     }
+
 }
