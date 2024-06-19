@@ -1,9 +1,9 @@
-import { Actor, Color, Font, Label, Scene, Sprite, Vector } from "excalibur";
+import { Actor, Color, Font, Label, Scene, Sprite, Vector, } from "excalibur";
 import { Resources } from "./resources";
 
 export class Start extends Scene {
 
-    onActivate() {
+    onActivate(engine) {
         const startScreenImage = new Sprite({
             image: Resources.StartScreen,
             destSize: { width: 1280, height: 720 } // Afmetingen aangepast aan het scherm
