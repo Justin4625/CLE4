@@ -20,7 +20,7 @@ export class Map extends Scene {
     }
 
     onInitialize(engine) {
-        console.log("start de game! Blabla");
+        console.log("start de game! bla");
         // const tiledMap = new TiledResource('map/tilemap.tmx');
         // tiledMap.addToScene(this);
 
