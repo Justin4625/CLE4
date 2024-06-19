@@ -18,6 +18,9 @@ const Resources = {
     Lithorock: new ImageSource('images/lithorock.png'),
     Test: new ImageSource('images/16x16.png'),
     Themesong: new Sound('sounds/themesong.mp3'),
+    Earthartifact: new ImageSource('images/earthartifact.png'),
+    Waterartifact: new ImageSource('images/waterartifact.png')
+
 }
 
 const ResourceLoader = new Loader()
