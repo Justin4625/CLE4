@@ -6,6 +6,7 @@ import { Wout } from "./boswachter-wout";
 import { Dirk } from "./dirk-zeebries";
 import { Woutdialogue } from "./boswachter-wout-dialogue";
 import { Drikdialogue } from "./dirk-zeebries-dialogue";
+import { Lithorock } from "./lithorock";
 
 export class Player extends Actor {
 
@@ -37,6 +38,9 @@ export class Player extends Actor {
         } else if (event.other instanceof Dirk) {
             console.log("Collision with Dirk detected");
             this.startDialogue(Drikdialogue);
+        } else if (event.other instanceof Lithorock) {
+            console.log("Collision with Lithorock detected");
+            this.startDialogue(Lithorock);
         }
     }
 
@@ -58,9 +62,9 @@ export class Player extends Actor {
         const keyboard = engine.input.keyboard;
         const gamepads = engine.input.gamepads;
 
-        if (keyboard.isHeld(Keys.W) || keyboard.isHeld(Keys.Up) || gamepads.at(0).getAxes(Axes.LeftStickY) > 0.5) {
+        if (keyboard.isHeld(Keys.W) || keyboard.isHeld(Keys.Up) || gamepads.at(0).getAxes(Axes.LeftStickY) < - 0.5) {
             if (this.isGrounded) {
-                this.isGrounded = false;
+              //  this.isGrounded = false;
             }
             yspeed = -150;
         }
@@ -75,11 +79,11 @@ export class Player extends Actor {
             // this.sprite.flipHorizontal = false;
         }
 
-        if (keyboard.isHeld(Keys.S) || keyboard.isHeld(Keys.Down) || gamepads.at(0).getAxes(Axes.LeftStickY) < -0.5) {
+        if (keyboard.isHeld(Keys.S) || keyboard.isHeld(Keys.Down) || gamepads.at(0).getAxes(Axes.LeftStickY) > 0.5) {
             yspeed = 150;
             // this.sprite.flipHorizontal = false;
         }
-
+        
         // Update velocity
         this.vel = new Vector(xspeed, yspeed);
     }
