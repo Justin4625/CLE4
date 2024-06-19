@@ -12,7 +12,7 @@ export class Water extends Actor {
 
     onInitialize(engine) {
         this.graphics.use(Resources.Waterartifact.toSprite())
-        this.pos = new Vector(450, 200)
+        this.pos = new Vector(2366, 2301)
         this.scale = new Vector(16 / Resources.Waterartifact.width, 16 / Resources.Waterartifact.height)
 
         this.on('collisionstart', () => {

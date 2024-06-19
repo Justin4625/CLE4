@@ -12,7 +12,7 @@ export class Earth extends Actor {
 
     onInitialize(engine) {
         this.graphics.use(Resources.Earthartifact.toSprite())
-        this.pos = new Vector(400, 200)
+        this.pos = new Vector(3086, 1400)
         this.scale = new Vector(16 / Resources.Earthartifact.width, 16 / Resources.Earthartifact.height)
 
         this.on('collisionstart', () => {
