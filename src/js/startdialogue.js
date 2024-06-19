@@ -7,8 +7,8 @@ export class Startdialogue extends Scene {
         this.dialogues = [
             { name: "Mysterieuze Stem", text: "Hier ben ik, in de wind die fluistert, in het water dat stroomt... Jij bent uitverkoren." },
             { name: "Mysterieuze Stem", text: "Je bent gekomen omdat je geroepen werd. Er rust een taak op jouw schouders, een taak van groot belang." },
-            { name: "Mysterieuze Stem", text: "Je moet vier artefacten vinden, verborgen rondom deze wateren en bossen. Ze zijn sleutels tot het mysterie dat wacht om onthuld te worden." },
-            { name: "Mysterieuze Stem", text: "Je zult begrijpen wanneer de tijd rijp is. Vind het, en de weg zal zich openbaren." },
+            { name: "Mysterieuze Stem", text: "Je moet vier artefacten vinden, verborgen rondom deze wateren en bossen. Ze zijn sleutels tot het voorkomen van het einde." },
+            { name: "Mysterieuze Stem", text: "Je zult begrijpen wanneer de tijd rijp is. Vind het, en de weg zal zich vervolgen." },
             { name: "Mysterieuze Stem", text: "Die antwoorden komen als je gehoor geeft aan de roep van het onbekende. Ga, en ontdek." }
         ];
     }
