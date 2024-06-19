@@ -5,6 +5,7 @@ import { ImageSource, Sound, Resource, Loader, TileMap } from 'excalibur'
 const Resources = {
     Fish: new ImageSource('images/fish.png'),
     StartScreen: new ImageSource('images/startscreen.png'),
+    GoodEndscreen: new ImageSource('good-endscreen.png'),
     Endscreen: new ImageSource('images/endscreen.png'),
     Backbutton: new ImageSource('images/backbutton.png'),
     Congratulations: new ImageSource('images/congratulations.png'),
@@ -21,8 +22,7 @@ const Resources = {
     Earthartifact: new ImageSource('images/earthartifact.png'),
     Waterartifact: new ImageSource('images/waterartifact.png'),
     Rockartifact: new ImageSource('images/rockartifact.png'),
-    Mysteryartifact: new ImageSource('images/mysteryartifact.png')
-
+    Mysteryartifact: new ImageSource('images/mysteryartifact.png'),
 }
 
 const ResourceLoader = new Loader()
