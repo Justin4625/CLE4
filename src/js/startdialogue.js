@@ -15,6 +15,7 @@ export class Startdialogue extends Scene {
 
     onInitialize(engine) {
         super.onInitialize(engine);
+        this.engine = engine; // Save a reference to the engine
         this.createNameBox(); // Maak het vak voor de naam
         this.showCurrentDialogue();
 
@@ -63,8 +64,6 @@ export class Startdialogue extends Scene {
         });
         this.add(this.nameLabel);
     }
-    
-    
     
     showCurrentDialogue() {
         const currentDialogue = this.dialogues[this.currentDialogueIndex];
@@ -149,8 +148,8 @@ export class Startdialogue extends Scene {
         });
     
         // Ga naar de volgende dialoog als er nog dialogen zijn
+        this.currentDialogueIndex++;
         if (this.currentDialogueIndex < this.dialogues.length) {
-            this.currentDialogueIndex++;
             this.createNameBox(); // Update de naambox voor de nieuwe dialoog
             this.showCurrentDialogue();
         } else {
