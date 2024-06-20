@@ -1,4 +1,4 @@
-import { Scene, Label, Color, Input, Font, Vector, Actor, Sprite } from "excalibur";
+import { Scene, Label, Color, Input, Font, Vector, Actor, Sprite, Buttons } from "excalibur";
 import { Resources } from "./resources";
 
 export class Startdialogue extends Scene {
@@ -58,6 +58,8 @@ export class Startdialogue extends Scene {
         this.engine = engine;
         this.createNameBox();
         this.showCurrentDialogue();
+
+        console.log(this.engine)
 
         engine.input.keyboard.on('press', (evt) => {
             if (evt.key === Input.Keys.Space) {

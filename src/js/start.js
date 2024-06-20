@@ -19,8 +19,8 @@ export class Start extends Scene {
         this.add(startScreenActor);
 
         this.startLabel = new Label({
-            text: 'Press "Start" to start the game',
-            pos: new Vector(500, 325), // Positie aangepast om binnen het scherm te passen
+            text: 'Press "Start"',
+            pos: new Vector(470, 325), // Positie aangepast om binnen het scherm te passen
             color: Color.Orange,
             font: new Font({
                 size: 50,
