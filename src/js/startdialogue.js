@@ -1,9 +1,25 @@
-import { Scene, Label, Color, Input, Font, Vector, Actor } from "excalibur";
+import { Scene, Label, Color, Input, Font, Vector, Actor, Sprite } from "excalibur";
+import { Resources } from "./resources";
 
 export class Startdialogue extends Scene {
     constructor() {
         super();
         this.currentDialogueIndex = 0;
+        this.bg = null; // Initialize bg as null
+
+        const startDialogueScreen = new Sprite({
+            image: Resources.Startdialogue,
+            destSize: { width: 1280, height: 720 }
+        });
+
+        // Create bg in constructor, but do not declare it as a const or let again
+        this.bg = new Actor({
+            pos: new Vector(640, 360),
+            width: 1280,
+            height: 720
+        });
+        this.bg.graphics.use(startDialogueScreen);
+        this.add(this.bg); // Add the background to the scene
 
         // Calculate the deadline time (30 minutes from now)
         const currentTime = new Date();
@@ -18,17 +34,31 @@ export class Startdialogue extends Scene {
             { name: "Mysterieuze Stem", text: "Je moet vier artefacten vinden, verborgen rondom deze wateren en bossen. Ze zijn sleutels tot het voorkomen van het einde." },
             { name: "Mysterieuze Stem", text: "Je zult begrijpen wanneer de tijd rijp is. Vind het, en de weg zal zich vervolgen." },
             { name: "Mysterieuze Stem", text: "Die antwoorden komen als je gehoor geeft aan de roep van het onbekende." },
-            { name: "Mysterieuze Stem", text: `Het einde zal zich plaatsvinden om ${this.deadlineTime}. Exact 30 minuten vanaf nu. Ga, en voorkom het.` },
+            { name: "Mysterieuze Stem", text: `Het einde zal zich plaatsvinden rond ${this.deadlineTime}. Dus 30 minuten vanaf nu. Ga, en voorkom het.` },
         ];
+
+        // Background image setup
+        this.startDialogueScreen = new Sprite({
+            image: Resources.Startdialogue,
+            destSize: { width: 1280, height: 720 }
+        });
+
+        const bg = new Actor({
+            pos: new Vector(640, 360),
+            width: 1280,
+            height: 720
+        });
+        bg.graphics.use(this.startDialogueScreen);
+        this.add(bg);
     }
 
     onInitialize(engine) {
         super.onInitialize(engine);
-        this.engine = engine; // Save a reference to the engine
-        this.createNameBox(); // Create the name box
+
+        this.engine = engine;
+        this.createNameBox();
         this.showCurrentDialogue();
 
-        // Listen for the space key event to go to the next dialogue
         engine.input.keyboard.on('press', (evt) => {
             if (evt.key === Input.Keys.Space) {
                 this.nextDialogue();
@@ -126,7 +156,7 @@ export class Startdialogue extends Scene {
 
                 const dialogLabelDeadline = new Label({
                     text: this.deadlineTime,
-                    pos: new Vector(690, posY),
+                    pos: new Vector(700, posY),
                     font: new Font({
                         size: 20,
                         family: 'Arial',
@@ -136,7 +166,7 @@ export class Startdialogue extends Scene {
 
                 const dialogLabelAfter = new Label({
                     text: afterDeadline,
-                    pos: new Vector(740, posY),
+                    pos: new Vector(750, posY),
                     font: new Font({
                         size: 20,
                         family: 'Arial',
@@ -190,21 +220,18 @@ export class Startdialogue extends Scene {
     }
 
     nextDialogue() {
-        // Remove all current dialogue actors (except the name box and the name label)
         this.actors.forEach(actor => {
-            if (actor !== this.nameBox && actor !== this.nameLabel) {
+            if (actor !== this.nameBox && actor !== this.nameLabel && actor !== this.bg) {
                 actor.kill();
             }
         });
 
-        // Go to the next dialogue if there are more dialogues
         this.currentDialogueIndex++;
         if (this.currentDialogueIndex < this.dialogues.length) {
-            this.createNameBox(); // Update the name box for the new dialogue
+            this.createNameBox();
             this.showCurrentDialogue();
         } else {
-            // If there are no more dialogues, stop the event listener and go to the next scene ('map')
-            this.engine.input.keyboard.off('press'); // Stop listening to key presses
+            this.engine.input.keyboard.off('press');
             this.engine.goToScene('map');
         }
     }
