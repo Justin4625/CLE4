@@ -1,9 +1,8 @@
-import { Actor, Loader, Scene, Vector } from "excalibur";
+import { Actor, Engine, Scene, Timer, Vector } from "excalibur";
 import { Startdialogue } from "./startdialogue";
 import { TiledResource } from "@excaliburjs/plugin-tiled";
 import { Player } from "./player";
 import { Lithorock } from "./lithorock";
-import { vector } from "excalibur/build/dist/Util/DrawUtil";
 import { Resources } from "./resources";
 import { Wout } from "./boswachter-wout";
 import { Dirk } from "./dirk-zeebries";
@@ -14,51 +13,44 @@ import { Rock } from "./rockartifact";
 import { Mystery } from "./mysteryartifact";
 import { Wall } from "./border";
 
-
 export class Map extends Scene {
     constructor() {
-        super()
+        super();
+        this.countdownTimer = null;
     }
 
     onInitialize(engine) {
         console.log("start de game! bla");
-        // const tiledMap = new TiledResource('map/tilemap.tmx');
-        // tiledMap.addToScene(this);
 
-        // const tiledMap = new TiledResource('map/tilemap.tmx')
-        // const loader = new Loader([tiledMap]);
-        // engine.start(loader).then(() => {
-        // });
         Resources.Map.addToScene(this);
 
-        const player = new Player
-        player.pos = new Vector(440, 2530)
-        this.add(player)
+        const player = new Player();
+        player.pos = new Vector(440, 2530);
+        this.add(player);
 
-        const wout = new Wout
-        this.add(wout)
+        const wout = new Wout();
+        this.add(wout);
 
-        const dirk = new Dirk
-        this.add(dirk)
+        const dirk = new Dirk();
+        this.add(dirk);
 
-        const elara = new Elara
-        this.add(elara)
+        const elara = new Elara();
+        this.add(elara);
 
-        const lithorock = new Lithorock
-        this.add(lithorock)
+        const lithorock = new Lithorock();
+        this.add(lithorock);
 
-        const earthartifact = new Earth
-        this.add(earthartifact)
+        const earthartifact = new Earth();
+        this.add(earthartifact);
 
-        const waterartifact = new Water
-        this.add(waterartifact)
+        const waterartifact = new Water();
+        this.add(waterartifact);
 
-        const Rockartifact = new Rock
-        this.add(Rockartifact)
+        const Rockartifact = new Rock();
+        this.add(Rockartifact);
 
-        const Mysteryartifact = new Mystery
-        this.add(Mysteryartifact)
-
+        const Mysteryartifact = new Mystery();
+        this.add(Mysteryartifact);
 
         engine.currentScene.camera.strategy.lockToActor(player);
         engine.currentScene.camera.zoom = 2.5;
@@ -78,9 +70,22 @@ export class Map extends Scene {
         this.add(bottomWall);
         this.add(leftWall);
         this.add(rightWall);
+
+        // Create and add a timer that counts down from 30 minutes (1800 seconds)
+        this.countdownTimer = new Timer({
+            fcn: () => this.onTimerEnd(engine),
+            interval: 1800 * 1000, // 30 minutes in milliseconds
+            repeats: false,
+        });
+        this.add(this.countdownTimer);
+        this.countdownTimer.start();
+    }
+
+    onTimerEnd(engine) {
+        engine.goToScene('end');
     }
 
     onPostUpdate() {
-
+        // Any post-update logic
     }
 }
