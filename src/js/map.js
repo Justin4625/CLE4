@@ -12,11 +12,13 @@ import { Water } from "./waterartifact";
 import { Rock } from "./rockartifact";
 import { Mystery } from "./mysteryartifact";
 import { Wall } from "./border";
+import { ArtifactManager } from "./artifactmanager";
 
 export class Map extends Scene {
     constructor() {
         super();
         this.countdownTimer = null;
+        this.artifactmanager = new ArtifactManager();
     }
 
     onInitialize(engine) {
@@ -55,9 +57,8 @@ export class Map extends Scene {
         engine.currentScene.camera.strategy.lockToActor(player);
         engine.currentScene.camera.zoom = 2.5;
 
-        // Map dimensions (example values, replace with your actual map size)
-        const mapWidth = 3200;  // Width of your map
-        const mapHeight = 3200; // Height of your map
+        const mapWidth = 3200;
+        const mapHeight = 3200;
         const wallThickness = 50;
 
         // Add walls around the map
@@ -71,21 +72,39 @@ export class Map extends Scene {
         this.add(leftWall);
         this.add(rightWall);
 
-        // Create and add a timer that counts down from 30 minutes (1800 seconds)
         this.countdownTimer = new Timer({
             fcn: () => this.onTimerEnd(engine),
-            interval: 1800 * 1000, // 30 minutes in milliseconds
+            interval: 1800 * 1000,
             repeats: false,
         });
         this.add(this.countdownTimer);
         this.countdownTimer.start();
+
+        this.artifactmanager.on('artifactCollected', () => {
+            if (this.artifactmanager.allCollected()) {
+                this.switchScene();
+
+            }
+        });
     }
 
     onTimerEnd(engine) {
         engine.goToScene('end');
     }
 
+    addArtifact(artifact) {
+        this.artifactmanager.addArtifact(artifact);
+        this.add(artifact);
+    }
+
+
+    switchScene() {
+        this.engine.goToScene('end');
+    }
+
+
+
     onPostUpdate() {
-        // Any post-update logic
+
     }
 }
