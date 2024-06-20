@@ -89,7 +89,7 @@ export class Map extends Scene {
     }
 
     onTimerEnd(engine) {
-        engine.goToScene('end');
+        engine.goToScene('badending');
     }
 
     addArtifact(artifact) {

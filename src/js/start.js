@@ -1,4 +1,4 @@
-import { Actor, Color, Font, Label, Scene, Sprite, Vector, } from "excalibur";
+import { Actor, Buttons, Color, Font, Label, Scene, Sprite, Vector, } from "excalibur";
 import { Resources } from "./resources";
 
 export class Start extends Scene {
@@ -19,7 +19,7 @@ export class Start extends Scene {
         this.add(startScreenActor);
 
         this.startLabel = new Label({
-            text: 'Start Game',
+            text: 'Press "Start" to start the game',
             pos: new Vector(500, 325), // Positie aangepast om binnen het scherm te passen
             color: Color.Orange,
             font: new Font({
@@ -37,5 +37,12 @@ export class Start extends Scene {
         Resources.Themesong.play();
         Resources.Themesong.loop = true;
     }
+
+    onPreUpdate(engine) {
+        if (engine.input.gamepads.at(0).isButtonPressed(Buttons.Start)) {
+            this.engine.goToScene('startdialogue')
+        }
+    }
+
 
 }
