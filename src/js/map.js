@@ -49,7 +49,6 @@ export class Map extends Scene {
         this.add(lithorock);
 
         const earthartifact = new Earth();
-        this.add(earthartifact);
         earthartifact.on('collisionstart', (evt) => {
             if (evt.other instanceof Player) {
                 this.earth = true
@@ -58,29 +57,61 @@ export class Map extends Scene {
         });
 
         const waterartifact = new Water();
-        this.add(waterartifact);
         waterartifact.on('collisionstart', (evt) => {
             if (evt.other instanceof Player) {
                 this.water = true
-                console.log(this.earth)
+                console.log(this.water)
             }
         });
 
-        const Rockartifact = new Rock();
-        this.add(Rockartifact);
-        Rockartifact.on('collisionstart', (evt) => {
+        const rockartifact = new Rock();
+        rockartifact.on('collisionstart', (evt) => {
             if (evt.other instanceof Player) {
                 this.rock = true
-                console.log(this.earth)
+                console.log(this.rock)
             }
         });
 
-        const Mysteryartifact = new Mystery();
-        this.add(Mysteryartifact);
-        Mysteryartifact.on('collisionstart', (evt) => {
+        const mysteryartifact = new Mystery();
+        mysteryartifact.on('collisionstart', (evt) => {
             if (evt.other instanceof Player) {
                 this.mystery = true
-                console.log(this.earth)
+                console.log(this.mystery)
+            }
+        });
+
+        wout.on('collisionstart', (evt) => {
+            if (evt.other instanceof Player && !this.earth) {
+                this.add(earthartifact);
+                earthartifact.pos = new Vector(310, 1243); // You can set a specific position if needed
+                console.log('Earth Artifact spawned!')
+            }
+        });
+
+        dirk.on('collisionstart', (evt) => {
+            if (evt.other instanceof Player && !this.water) {
+                this.add(waterartifact);
+                waterartifact.pos = new Vector(2365, 2304); // You can set a specific position if needed
+                console.log('Water Artifact spawned!')
+
+            }
+        });
+
+        elara.on('collisionstart', (evt) => {
+            if (evt.other instanceof Player && !this.mystery) {
+                this.add(mysteryartifact);
+                mysteryartifact.pos = new Vector(3090, 120); // You can set a specific position if needed
+                console.log('Mystery Artifact spawned!')
+
+            }
+        });
+
+        lithorock.on('collisionstart', (evt) => {
+            if (evt.other instanceof Player && !this.rock) {
+                this.add(rockartifact);
+                rockartifact.pos = new Vector(2233, 3142); // You can set a specific position if needed
+                console.log('Rock Artifact spawned!')
+
             }
         });
 
@@ -132,7 +163,6 @@ export class Map extends Scene {
     switchScene() {
         this.engine.goToScene('end');
     }
-
 
 
     onPreUpdate() {

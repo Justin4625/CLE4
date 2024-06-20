@@ -12,7 +12,7 @@ export class Mystery extends Actor {
 
     onInitialize(engine) {
         this.graphics.use(Resources.Mysteryartifact.toSprite());
-        this.pos = new Vector(400, 400);
+        this.pos = new Vector(3090, 120);
         this.scale = new Vector(16 / Resources.Mysteryartifact.width, 16 / Resources.Mysteryartifact.height);
 
         this.on('collisionstart', (evt) => {

@@ -12,12 +12,12 @@ export class Earth extends Actor {
 
     onInitialize(engine) {
         this.graphics.use(Resources.Earthartifact.toSprite());
-        this.pos = new Vector(400, 400);
+        this.pos = new Vector(310, 1243);
         this.scale = new Vector(16 / Resources.Earthartifact.width, 16 / Resources.Earthartifact.height);
 
         this.on('collisionstart', (evt) => {
             if (evt.other instanceof Player) {
-                console.log('Rock artifact collected');
+                console.log('Earth artifact collected');
                 this.emit('collected');
                 this.kill();
             }

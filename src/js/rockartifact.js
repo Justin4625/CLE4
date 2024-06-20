@@ -12,7 +12,7 @@ export class Rock extends Actor {
 
     onInitialize(engine) {
         this.graphics.use(Resources.Rockartifact.toSprite());
-        this.pos = new Vector(400, 400);
+        this.pos = new Vector(2233, 3142);
         this.scale = new Vector(16 / Resources.Rockartifact.width, 16 / Resources.Rockartifact.height);
 
         this.on('collisionstart', (evt) => {
