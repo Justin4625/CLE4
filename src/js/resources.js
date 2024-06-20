@@ -4,7 +4,7 @@ import { ImageSource, Sound, Resource, Loader, TileMap } from 'excalibur'
 // voeg hier jouw eigen resources toe
 const Resources = {
     Fish: new ImageSource('images/fish.png'),
-    StartScreen: new ImageSource('images/startscreen.png'),
+    StartScreen: new ImageSource('images/startscreen.webp'),
     GoodEndscreen: new ImageSource('images/good-endscreen.png'),
     Endscreen: new ImageSource('images/endscreen.png'),
     Backbutton: new ImageSource('images/backbutton.png'),

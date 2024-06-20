@@ -20,8 +20,8 @@ export class Start extends Scene {
 
         this.startLabel = new Label({
             text: 'Start Game',
-            pos: new Vector(500, 500), // Positie aangepast om binnen het scherm te passen
-            color: Color.White,
+            pos: new Vector(500, 350), // Positie aangepast om binnen het scherm te passen
+            color: Color.Orange,
             font: new Font({
                 size: 50,
                 bold: true
