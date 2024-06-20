@@ -17,7 +17,7 @@ export class Earth extends Actor {
 
         this.on('collisionstart', (evt) => {
             if (evt.other instanceof Player) {
-                console.log('Earth artifact collected');
+                console.log('Rock artifact collected');
                 this.emit('collected');
                 this.kill();
             }

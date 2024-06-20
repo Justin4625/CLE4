@@ -15,6 +15,12 @@ import { Wall } from "./border";
 import { ArtifactManager } from "./artifactmanager";
 
 export class Map extends Scene {
+
+    earth = false
+    water = false
+    rock = false
+    mystery = false
+
     constructor() {
         super();
         this.countdownTimer = null;
@@ -44,15 +50,39 @@ export class Map extends Scene {
 
         const earthartifact = new Earth();
         this.add(earthartifact);
+        earthartifact.on('collisionstart', (evt) => {
+            if (evt.other instanceof Player) {
+                this.earth = true
+                console.log(this.earth)
+            }
+        });
 
         const waterartifact = new Water();
         this.add(waterartifact);
+        waterartifact.on('collisionstart', (evt) => {
+            if (evt.other instanceof Player) {
+                this.water = true
+                console.log(this.earth)
+            }
+        });
 
         const Rockartifact = new Rock();
         this.add(Rockartifact);
+        Rockartifact.on('collisionstart', (evt) => {
+            if (evt.other instanceof Player) {
+                this.rock = true
+                console.log(this.earth)
+            }
+        });
 
         const Mysteryartifact = new Mystery();
         this.add(Mysteryartifact);
+        Mysteryartifact.on('collisionstart', (evt) => {
+            if (evt.other instanceof Player) {
+                this.mystery = true
+                console.log(this.earth)
+            }
+        });
 
         engine.currentScene.camera.strategy.lockToActor(player);
         engine.currentScene.camera.zoom = 2.5;
@@ -83,9 +113,10 @@ export class Map extends Scene {
         this.artifactmanager.on('artifactCollected', () => {
             if (this.artifactmanager.allCollected()) {
                 this.switchScene();
-
             }
         });
+
+
     }
 
     onTimerEnd(engine) {
@@ -104,7 +135,9 @@ export class Map extends Scene {
 
 
 
-    onPostUpdate() {
-
+    onPreUpdate() {
+        if (this.earth === true && this.water === true && this.rock === true && this.mystery === true) {
+            this.engine.goToScene('badending')
+        }
     }
 }

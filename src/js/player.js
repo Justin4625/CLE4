@@ -7,6 +7,10 @@ import { Dirk } from "./dirk-zeebries";
 import { Woutdialogue } from "./boswachter-wout-dialogue";
 import { Drikdialogue } from "./dirk-zeebries-dialogue";
 import { Lithorock } from "./lithorock";
+import { Earth } from "./earthartifact";
+import { Water } from "./waterartifact";
+import { Rock } from "./rockartifact";
+import { Mystery } from "./mysteryartifact";
 
 export class Player extends Actor {
 
@@ -44,11 +48,11 @@ export class Player extends Actor {
             this.startDialogue('lithorockDialogue');
         }
     }
-    
+
     startDialogue(dialogue) {
         this.scene?.engine.goToScene(dialogue);
     }
-    
+
 
     onPreUpdate(engine, delta) {
         this.sprite = Resources.Test.toSprite()
@@ -64,7 +68,7 @@ export class Player extends Actor {
 
         if (keyboard.isHeld(Keys.W) || keyboard.isHeld(Keys.Up) || gamepads.at(0).getAxes(Axes.LeftStickY) < - 0.5) {
             if (this.isGrounded) {
-              //  this.isGrounded = false;
+                //  this.isGrounded = false;
             }
             yspeed = -150;
         }
@@ -83,7 +87,7 @@ export class Player extends Actor {
             yspeed = 150;
             // this.sprite.flipHorizontal = false;
         }
-        
+
         // Update velocity
         this.vel = new Vector(xspeed, yspeed);
     }
