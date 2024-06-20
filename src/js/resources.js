@@ -24,6 +24,7 @@ const Resources = {
     Waterartifact: new ImageSource('images/waterartifact.png'),
     Rockartifact: new ImageSource('images/rockartifact.png'),
     Mysteryartifact: new ImageSource('images/mysteryartifact.png'),
+    WoutBG: new ImageSource('images/woutbg.png')
 }
 
 const ResourceLoader = new Loader()

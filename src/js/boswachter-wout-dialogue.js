@@ -6,12 +6,27 @@ export class Woutdialogue extends Scene {
     constructor() {
         super();
         this.currentDialogueIndex = 0;
+        
         this.choiceMade = false;
         this.dialogues = [
             { name: "Wout de Boswachter", text: "Ah, daar ben je! Welkom in het Kralingse Bos. Mijn naam is Wout de Boswachter." },
             { name: "Wout de Boswachter", text: "Dit is een plek vol wonderen en mysteries. Heb je ooit gehoord van het Earth Artifact?" },
         ];
         this.respawnCoordinates = { x: 1455, y: 440 };
+
+        this.WoutBGScreen = new Sprite({
+            image: Resources.WoutBG,
+            destSize: { width: 1280, height: 720 }
+        });
+
+        // Create bg Actor and use the background image sprite
+        this.bg = new Actor({
+            pos: new Vector(640, 360),
+            width: 1280,
+            height: 720
+        });
+        this.bg.graphics.use(this.WoutBGScreen);
+        this.add(this.bg);
        
     }
 
@@ -34,19 +49,6 @@ export class Woutdialogue extends Scene {
             }
         });
 
-        const woutMain = new Sprite({
-            image: Resources.WoutMain,
-            destSize: { width: 1280, height: 720 }
-        });
-
-        const bg = new Actor({
-            pos: new Vector(640, 360),
-            width: 1280,
-            height: 720
-        });
-        bg.graphics.use(woutMain);
-        this.add(bg);
-        
     }
 
     createDialogueBox(text, name) {
