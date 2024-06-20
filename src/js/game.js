@@ -4,7 +4,7 @@ import { Resources, ResourceLoader } from './resources.js'
 import { Start } from './start'
 import { Map } from './map'
 import { Startdialogue } from './startdialogue.js'
-import { End } from './end.js'
+import { Badending } from './badending.js'
 import { Wout } from './boswachter-wout'
 import { Woutdialogue } from './boswachter-wout-dialogue'
 import { Drikdialogue } from './dirk-zeebries-dialogue'
@@ -27,7 +27,7 @@ export class Game extends Engine {
         this.add('start', new Start())
         this.add('startdialogue', new Startdialogue())
         this.add('map', new Map())
-        this.add('end', new End())
+        this.add('badending', new Badending())
         this.add('woutDialogue', new Woutdialogue())
         this.add('dirkDialogue', new Drikdialogue())
         this.add('lithorockDialogue', new Lithorockdialogue())
