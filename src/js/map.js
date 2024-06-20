@@ -12,6 +12,7 @@ import { Earth } from "./earthartifact";
 import { Water } from "./waterartifact";
 import { Rock } from "./rockartifact";
 import { Mystery } from "./mysteryartifact";
+import { Wall } from "./border";
 
 
 export class Map extends Scene {
@@ -61,6 +62,22 @@ export class Map extends Scene {
 
         engine.currentScene.camera.strategy.lockToActor(player);
         engine.currentScene.camera.zoom = 2.5;
+
+        // Map dimensions (example values, replace with your actual map size)
+        const mapWidth = 3200;  // Width of your map
+        const mapHeight = 3200; // Height of your map
+        const wallThickness = 50;
+
+        // Add walls around the map
+        const topWall = new Wall(mapWidth / 2, -wallThickness / 2, mapWidth, wallThickness);
+        const bottomWall = new Wall(mapWidth / 2, mapHeight + wallThickness / 2, mapWidth, wallThickness);
+        const leftWall = new Wall(-wallThickness / 2, mapHeight / 2, wallThickness, mapHeight);
+        const rightWall = new Wall(mapWidth + wallThickness / 2, mapHeight / 2, wallThickness, mapHeight);
+
+        this.add(topWall);
+        this.add(bottomWall);
+        this.add(leftWall);
+        this.add(rightWall);
     }
 
     onPostUpdate() {
