@@ -1,4 +1,5 @@
 import { Scene, Label, Color, Input, Font, Vector, Actor } from "excalibur";
+import { Player } from "./player";
 
 export class Drikdialogue extends Scene {
     constructor() {
@@ -12,6 +13,7 @@ export class Drikdialogue extends Scene {
             { name: "Dirk Zeebries", text: "Ik ben Dirk Zeebries, kenner van de geheimen van dit bos." },
             { name: "Dirk Zeebries", text: "Yo, wat wil je weten, dude?" },
         ];
+        this.respawnCoordinates = { x: 755, y: 1280 };
     }
 
     onInitialize(engine) {
@@ -385,6 +387,7 @@ export class Drikdialogue extends Scene {
         ];
 
         this.showOptions(options, this.showDialogue5);
+        
     }
 
     showDialogue5() {
@@ -408,10 +411,19 @@ export class Drikdialogue extends Scene {
                     this.nextDialogue();
                 } else {
                     if (!this.choiceMade) {
-                        this.showChoiceOptions4();
+                        this.endDialogueScene();
                     }
                 }
             }
         });
+    }
+
+    endDialogueScene() {
+        const player = new Player;
+        player.pos.x = this.respawnCoordinates.x;
+        player.pos.y = this.respawnCoordinates.y;
+        
+        this.engine.goToScene('map'); 
+       
     }
 }

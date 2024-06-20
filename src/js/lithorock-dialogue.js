@@ -1,4 +1,5 @@
 import { Scene, Label, Color, Input, Font, Vector, Actor } from "excalibur";
+import { Player } from "./player";
 
 export class Lithorockdialogue extends Scene {
     constructor() {
@@ -9,6 +10,7 @@ export class Lithorockdialogue extends Scene {
             { name: "Lithorock", text: "Ah, een avonturier! Welkom in het Kralingse Bos." },
             { name: "Lithorock", text: "Mijn naam is Lithorck. Wat brengt je hier vandaag?" },
         ];
+        this.respawnCoordinates = { x: 2662, y: 1875 }; 
     }
 
     onInitialize(engine) {
@@ -416,10 +418,18 @@ export class Lithorockdialogue extends Scene {
                     this.nextDialogue();
                 } else {
                     if (!this.choiceMade) {
-                        this.showChoiceOptions4();
+                        this.endDialogueScene();
                     }
                 }
             }
         });
+    }
+    endDialogueScene() {
+        const player = new Player;
+        player.pos.x = this.respawnCoordinates.x;
+        player.pos.y = this.respawnCoordinates.y;
+        
+        this.engine.goToScene('map'); 
+       
     }
 }

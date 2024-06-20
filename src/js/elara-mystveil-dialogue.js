@@ -1,4 +1,5 @@
 import { Scene, Label, Color, Input, Font, Vector, Actor } from "excalibur";
+import { Player } from "./player";
 
 export class Elaradialogue extends Scene {
     constructor() {
@@ -13,6 +14,7 @@ export class Elaradialogue extends Scene {
             { name: "Elara Mystveil?", text: "Of niet?" },
             { name: "Elara Mystveil?", text: "Wie weet." },
         ];
+        this.respawnCoordinates = { x: 183, y: 526 }; 
     }
 
     onInitialize(engine) {
@@ -592,10 +594,20 @@ export class Elaradialogue extends Scene {
                     this.nextDialogue();
                 } else {
                     if (!this.choiceMade) {
-                        this.showChoiceOptions8();
+                        this.endDialogueScene();
                     }
                 }
             }
         });
     }
+
+    endDialogueScene() {
+        const player = new Player;
+        player.pos.x = this.respawnCoordinates.x;
+        player.pos.y = this.respawnCoordinates.y;
+        
+        this.engine.goToScene('map'); 
+       
+    }
+    
 }

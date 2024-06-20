@@ -31,24 +31,24 @@ export class Player extends Actor {
     onCollide(event) {
         if (event.other instanceof Elara) {
             console.log("Collision with Elara detected");
-            this.startDialogue(Elaradialogue);
+            this.startDialogue('elaraDialogue');
+            this.respawnCoordinates = { x: 183, y: 526 };
         } else if (event.other instanceof Wout) {
             console.log("Collision with Wout detected");
-            this.startDialogue(Woutdialogue);
+            this.startDialogue('woutDialogue');
         } else if (event.other instanceof Dirk) {
             console.log("Collision with Dirk detected");
-            this.startDialogue(Drikdialogue);
+            this.startDialogue('dirkDialogue');
         } else if (event.other instanceof Lithorock) {
             console.log("Collision with Lithorock detected");
-            this.startDialogue(Lithorock);
+            this.startDialogue('lithorockDialogue');
         }
     }
-
-    startDialogue(dialogueClass) {
-        const dialogue = new dialogueClass();
     
-        dialogue.showCurrentDialogue();
+    startDialogue(dialogue) {
+        this.scene?.engine.goToScene(dialogue);
     }
+    
 
     onPreUpdate(engine, delta) {
         this.sprite = Resources.Test.toSprite()

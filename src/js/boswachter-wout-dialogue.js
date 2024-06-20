@@ -1,4 +1,6 @@
-import { Scene, Label, Color, Input, Font, Vector, Actor } from "excalibur";
+import { Scene, Label, Color, Input, Font, Vector, Actor, Sprite, Loader } from "excalibur";
+import { Player } from "./player";
+import { Resources } from "./resources";
 
 export class Woutdialogue extends Scene {
     constructor() {
@@ -9,10 +11,14 @@ export class Woutdialogue extends Scene {
             { name: "Wout de Boswachter", text: "Ah, daar ben je! Welkom in het Kralingse Bos. Mijn naam is Wout de Boswachter." },
             { name: "Wout de Boswachter", text: "Dit is een plek vol wonderen en mysteries. Heb je ooit gehoord van het Earth Artifact?" },
         ];
+        this.respawnCoordinates = { x: 1455, y: 440 };
+       
     }
 
     onInitialize(engine) {
+
         super.onInitialize(engine);
+        
         this.showCurrentDialogue();
 
         engine.input.keyboard.on('press', (evt) => {
@@ -27,6 +33,20 @@ export class Woutdialogue extends Scene {
                 }
             }
         });
+
+        const woutMain = new Sprite({
+            image: Resources.WoutMain,
+            destSize: { width: 1280, height: 720 }
+        });
+
+        const bg = new Actor({
+            pos: new Vector(640, 360),
+            width: 1280,
+            height: 720
+        });
+        bg.graphics.use(woutMain);
+        this.add(bg);
+        
     }
 
     createDialogueBox(text, name) {
@@ -489,10 +509,18 @@ export class Woutdialogue extends Scene {
                     this.nextDialogue();
                 } else {
                     if (!this.choiceMade) {
-                        this.showChoiceOptions6();
+                        this.endDialogueScene();
                     }
                 }
             }
         });
+    }
+    endDialogueScene() {
+        const player = new Player;
+        player.pos.x = this.respawnCoordinates.x;
+        player.pos.y = this.respawnCoordinates.y;
+        
+        this.engine.goToScene('map'); 
+       
     }
 }
