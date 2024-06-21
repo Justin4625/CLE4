@@ -135,7 +135,7 @@ export class Map extends Scene {
 
         this.countdownTimer = new Timer({
             fcn: () => this.onTimerEnd(engine),
-            interval: 1800 * 1000,
+            interval: 600 * 1000,
             repeats: false,
         });
         this.add(this.countdownTimer);
