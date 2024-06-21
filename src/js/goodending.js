@@ -12,7 +12,7 @@ export class Goodending extends Scene {
 
     onInitialize(engine) {
         const endScreenImage = new Sprite({
-            image: Resources.GoodEndscreen,
+            image: Resources.GoodEndScreen,
             destSize: { width: 1280, height: 720 }
         });
 
