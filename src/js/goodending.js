@@ -1,4 +1,4 @@
-import { Actor, Color, DisplayMode, Font, Label, Scene, Sprite, Vector } from "excalibur";
+import { Actor, Buttons, Color, DisplayMode, Font, Label, Scene, Sprite, Vector } from "excalibur";
 import { Resources } from "./resources";
 
 
@@ -39,5 +39,11 @@ export class Goodending extends Scene {
         this.Backbutton.graphics.use(Resources.Backbutton.toSprite());
         this.Backbutton.pos = new Vector(650, 500);
         this.add(this.Backbutton);
+    }
+
+    onPreUpdate(engine) {
+        if (engine.input.gamepads.at(0).isButtonPressed(Buttons.Start)) {
+            window.location.reload();
+        }
     }
 }
