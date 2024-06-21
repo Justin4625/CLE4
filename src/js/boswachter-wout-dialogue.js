@@ -6,7 +6,7 @@ export class Woutdialogue extends Scene {
     constructor() {
         super();
         this.currentDialogueIndex = 0;
-        
+
         this.choiceMade = false;
         this.dialogues = [
             { name: "Wout de Boswachter", text: "Ah, daar ben je! Welkom in het Kralingse Bos. Mijn naam is Wout de Boswachter." },
@@ -27,13 +27,13 @@ export class Woutdialogue extends Scene {
         });
         this.bg.graphics.use(this.WoutBGScreen);
         this.add(this.bg);
-       
+
     }
 
     onInitialize(engine) {
 
         super.onInitialize(engine);
-        
+
         this.showCurrentDialogue();
 
         engine.input.keyboard.on('press', (evt) => {
@@ -187,12 +187,18 @@ export class Woutdialogue extends Scene {
     showOptions(options, callback) {
         let posY = 500;
         const lineHeight = 25;
-        const maxWidth = 600;
+        const maxWidth = 650;
         const borderWidth = 2;
         const padding = 10;
+        const symbolPairs = [
+            ['❑', 'X'],
+            ['Δ', 'Y'],
+            ['O', 'B']
+        ];
 
         options.forEach((option, index) => {
-            let optionText = `${index + 1}. `;
+            let symbols = symbolPairs[index % symbolPairs.length]; // Afwisselen tussen symbolenparen als er meer opties zijn dan paren
+            let optionText = `${symbols[0]} / ${symbols[1]} `; // Gebruik de symbolen in het formaat ❑ / X
 
             if (index === 0 || index === 1 || index === 2) {
                 optionText += this.wrapText(option, maxWidth);
@@ -226,7 +232,7 @@ export class Woutdialogue extends Scene {
 
             const optionLabel = new Label({
                 text: optionText,
-                pos: new Vector(375, posY),
+                pos: new Vector(330, posY),
                 font: new Font({
                     size: 20,
                     family: 'Arial',
@@ -521,9 +527,9 @@ export class Woutdialogue extends Scene {
         const player = new Player;
         player.pos.x = this.respawnCoordinates.x;
         player.pos.y = this.respawnCoordinates.y;
-        
+
         this.engine.input.keyboard.off('press');
-        this.engine.goToScene('map'); 
-       
+        this.engine.goToScene('map');
+
     }
 }

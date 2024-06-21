@@ -171,12 +171,18 @@ export class Elaradialogue extends Scene {
     showOptions(options, callback) {
         let posY = 500;
         const lineHeight = 25;
-        const maxWidth = 600;
+        const maxWidth = 650;
         const borderWidth = 2;
         const padding = 10;
+        const symbolPairs = [
+            ['❑', 'X'],
+            ['Δ', 'Y'],
+            ['O', 'B']
+        ];
 
         options.forEach((option, index) => {
-            let optionText = `${index + 1}. `;
+            let symbols = symbolPairs[index % symbolPairs.length]; // Afwisselen tussen symbolenparen als er meer opties zijn dan paren
+            let optionText = `${symbols[0]} / ${symbols[1]} `; // Gebruik de symbolen in het formaat ❑ / X
 
             if (index === 0 || index === 1 || index === 2) {
                 optionText += this.wrapText(option, maxWidth);
@@ -210,7 +216,7 @@ export class Elaradialogue extends Scene {
 
             const optionLabel = new Label({
                 text: optionText,
-                pos: new Vector(375, posY),
+                pos: new Vector(330, posY),
                 font: new Font({
                     size: 20,
                     family: 'Arial',

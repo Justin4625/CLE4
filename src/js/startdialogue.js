@@ -21,9 +21,9 @@ export class Startdialogue extends Scene {
         this.bg.graphics.use(startDialogueScreen);
         this.add(this.bg); // Add the background to the scene
 
-        // Calculate the deadline time (30 minutes from now)
+        // Calculate the deadline time (10 minutes from now)
         const currentTime = new Date();
-        const deadline = new Date(currentTime.getTime() + 30 * 60000);
+        const deadline = new Date(currentTime.getTime() + 10 * 60000);
         const hours = String(deadline.getHours()).padStart(2, '0');
         const minutes = String(deadline.getMinutes()).padStart(2, '0');
         this.deadlineTime = `${hours}:${minutes}`;
@@ -34,7 +34,9 @@ export class Startdialogue extends Scene {
             { name: "Mysterieuze Stem", text: "Je moet vier artefacten vinden, verborgen rondom deze wateren en bossen. Ze zijn sleutels tot het voorkomen van het einde." },
             { name: "Mysterieuze Stem", text: "Je zult begrijpen wanneer de tijd rijp is. Vind het, en de weg zal zich vervolgen." },
             { name: "Mysterieuze Stem", text: "Die antwoorden komen als je gehoor geeft aan de roep van het onbekende." },
-            { name: "Mysterieuze Stem", text: `Het einde zal zich plaatsvinden rond ${this.deadlineTime}. Dus 30 minuten vanaf nu. Ga, en voorkom het.` },
+            { name: "Mysterieuze Stem", text: `Het einde zal zich ergens plaatsvinden rond ${this.deadlineTime}. Dus ongeveer 10 minuten vanaf nu.` },
+            { name: "Mysterieuze Stem", text: "(Note: dialogue neemt geen tijd in beslag)" },
+            { name: "Mysterieuze Stem", text: "Ga reiziger, ontdek en voorkom het einde." },
         ];
 
         // Background image setup
@@ -172,7 +174,7 @@ export class Startdialogue extends Scene {
 
                 const dialogLabelDeadline = new Label({
                     text: this.deadlineTime,
-                    pos: new Vector(700, posY),
+                    pos: new Vector(768, posY),
                     font: new Font({
                         size: 20,
                         family: 'Arial',
@@ -182,7 +184,7 @@ export class Startdialogue extends Scene {
 
                 const dialogLabelAfter = new Label({
                     text: afterDeadline,
-                    pos: new Vector(750, posY),
+                    pos: new Vector(817, posY),
                     font: new Font({
                         size: 20,
                         family: 'Arial',
