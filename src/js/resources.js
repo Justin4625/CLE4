@@ -6,7 +6,7 @@ const Resources = {
     Fish: new ImageSource('images/fish.png'),
     Startdialogue: new ImageSource('images/startdialogue.png'),
     StartScreen: new ImageSource('images/startscreen.png'),
-    GoodEndscreen: new ImageSource('images/good-endscreen.png'),
+    w: new ImageSource('images/good-endscreen.png'),
     Endscreen: new ImageSource('images/endscreen.png'),
     Backbutton: new ImageSource('images/backbutton.png'),
     Congratulations: new ImageSource('images/congratulations.png'),
