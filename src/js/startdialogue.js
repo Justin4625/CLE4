@@ -67,6 +67,20 @@ export class Startdialogue extends Scene {
             }
         });
     }
+    onPreUpdate(engine, delta) {
+        super.onPreUpdate(engine, delta);
+
+        const gamepad = engine.input.gamepads.at(0); // Assume single player and get the first gamepad
+
+        if (gamepad) {
+            // X button is typically button 2 on most gamepads
+            if (gamepad.isButtonPressed(Input.Buttons.Face1) && !this.gamepadCooldown) {
+                this.nextDialogue();
+                this.gamepadCooldown = true;
+                setTimeout(() => { this.gamepadCooldown = false; }, 400); // 200ms cooldown
+            }
+        }
+    }
 
     createNameBox() {
         // Remove existing name box and label if they exist

@@ -167,7 +167,7 @@ export class Map extends Scene {
 
     onPreUpdate() {
         if (this.earth === true && this.water === true && this.rock === true && this.mystery === true) {
-            this.engine.goToScene('badending')
+            this.engine.goToScene('goodending')
         }
     }
 }

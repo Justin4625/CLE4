@@ -10,6 +10,7 @@ import { Woutdialogue } from './boswachter-wout-dialogue'
 import { Drikdialogue } from './dirk-zeebries-dialogue'
 import { Lithorockdialogue } from './lithorock-dialogue'
 import { Elaradialogue } from './elara-mystveil-dialogue'
+import { Goodending } from './goodending.js'
 
 export class Game extends Engine {
 
@@ -28,6 +29,7 @@ export class Game extends Engine {
         this.add('startdialogue', new Startdialogue())
         this.add('map', new Map())
         this.add('badending', new Badending())
+        this.add('goodending', new Goodending())
         this.add('woutDialogue', new Woutdialogue())
         this.add('dirkDialogue', new Drikdialogue())
         this.add('lithorockDialogue', new Lithorockdialogue())
