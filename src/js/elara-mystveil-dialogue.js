@@ -534,7 +534,7 @@ export class Elaradialogue extends Scene {
         this.dialogues = [
             { name: "Elara Mystveil?", text: "Hoe dan ook, als je nog meer wilt weten..." },
             { name: "Elara Mystveil?", text: "Nou ja..." },
-            { name: "Elara Mystveil?", text: "dan moet je maar verder zoeken." },
+            { name: "Elara Mystveil?", text: "Dan moet je maar verder zoeken." },
             { name: "Elara Mystveil?", text: "Of niet." },
             { name: "Elara Mystveil?", text: "Het is jouw avontuur, toch?" },
         ];
