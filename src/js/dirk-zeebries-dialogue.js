@@ -419,11 +419,15 @@ export class Drikdialogue extends Scene {
     }
 
     endDialogueScene() {
-        const player = new Player;
+        const player = new Player();
         player.pos.x = this.respawnCoordinates.x;
         player.pos.y = this.respawnCoordinates.y;
-        
-        this.engine.goToScene('map'); 
-       
+    
+        // Verwijder alle event listeners voor de spatiebalk
+        this.engine.input.keyboard.off('press');
+    
+        // Ga naar de mapscene
+        this.engine.goToScene('map');
     }
+    
 }

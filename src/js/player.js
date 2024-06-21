@@ -15,6 +15,7 @@ import { Mystery } from "./mysteryartifact";
 export class Player extends Actor {
 
     sprite
+    dialogueStartedMap = new Map();
 
     constructor(x, y) {
         super({
@@ -33,19 +34,23 @@ export class Player extends Actor {
     }
 
     onCollide(event) {
-        if (event.other instanceof Elara) {
+        const other = event.other;
+        if (other instanceof Elara && !this.dialogueStartedMap.has('elara')) {
             console.log("Collision with Elara detected");
             this.startDialogue('elaraDialogue');
-            this.respawnCoordinates = { x: 183, y: 526 };
-        } else if (event.other instanceof Wout) {
+            this.dialogueStartedMap.set('elara', true);
+        } else if (other instanceof Wout && !this.dialogueStartedMap.has('wout')) {
             console.log("Collision with Wout detected");
             this.startDialogue('woutDialogue');
-        } else if (event.other instanceof Dirk) {
+            this.dialogueStartedMap.set('wout', true);
+        } else if (other instanceof Dirk && !this.dialogueStartedMap.has('dirk')) {
             console.log("Collision with Dirk detected");
             this.startDialogue('dirkDialogue');
-        } else if (event.other instanceof Lithorock) {
+            this.dialogueStartedMap.set('dirk', true);
+        } else if (other instanceof Lithorock && !this.dialogueStartedMap.has('lithorock')) {
             console.log("Collision with Lithorock detected");
             this.startDialogue('lithorockDialogue');
+            this.dialogueStartedMap.set('lithorock', true);
         }
     }
 

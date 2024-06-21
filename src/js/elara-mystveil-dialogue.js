@@ -606,6 +606,7 @@ export class Elaradialogue extends Scene {
         player.pos.x = this.respawnCoordinates.x;
         player.pos.y = this.respawnCoordinates.y;
         
+        this.engine.input.keyboard.off('press');
         this.engine.goToScene('map'); 
        
     }
