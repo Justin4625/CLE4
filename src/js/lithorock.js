@@ -7,7 +7,7 @@ export class Lithorock extends Actor {
             pos: new Vector(0, 0),
             width: 32,
             height: 32,
-            collisionType: CollisionType.Fixed 
+            collisionType: CollisionType.Fixed
         });
         const idleSheet = SpriteSheet.fromImageSource({
             image: Resources.Lithorock,
@@ -15,7 +15,7 @@ export class Lithorock extends Actor {
         });
 
         const idleFrames = [0, 1]; // assuming you want to animate the first frame
-        const idleAnimation = Animation.fromSpriteSheet(idleSheet, idleFrames, 500); // 100ms per frame
+        const idleAnimation = Animation.fromSpriteSheet(idleSheet, idleFrames, 500); // 500ms per frame
         idleAnimation.scale = new Vector(32 / 498, 32 / 504);
 
         this.graphics.add("idle", idleAnimation);

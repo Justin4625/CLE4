@@ -18,7 +18,7 @@ const Resources = {
     Dirk: new ImageSource('images/dirk-zeebries.png'),
     Elara: new ImageSource('images/elara-mystveil.png'),
     Lithorock: new ImageSource('images/lithorock.png'),
-    Test: new ImageSource('images/16x16.png'),
+    Test: new ImageSource('images/L2.jpeg'),
     Themesong: new Sound('sounds/themesong.mp3'),
     Earthartifact: new ImageSource('images/earthartifact.png'),
     Waterartifact: new ImageSource('images/waterartifact.png'),

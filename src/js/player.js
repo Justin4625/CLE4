@@ -29,6 +29,7 @@ export class Player extends Actor {
     onInitialize(engine) {
         this.sprite = Resources.Test.toSprite();
         this.graphics.use(this.sprite);
+        this.scale = new Vector(0.5, 0.5);
 
         this.on("collisionstart", (event) => this.onCollide(event));
     }
