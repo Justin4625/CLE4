@@ -401,10 +401,8 @@ export class Lithorockdialogue extends Scene {
             { name: "Lithorock", text: "Magie is een vreemd en mysterieus iets. Het kan sluimeren, wachtend op de juiste persoon om het weer te wekken." },
             { name: "Lithorock", text: "En ja, er zijn altijd verhalen van mensen die zeggen dat ze iets ongewoons hebben gezien in de plas, maar bewijs is er nooit." },
             { name: "Lithorock", text: "Misschien ben jij degene die het artefact zal vinden en zijn geheimen zal onthullen." },
-            { name: "Lithorock", text: "Vergeet niet, als je de plas ingaat: blijf altijd rotsvast op je voeten!" },
             { name: "Lithorock", text: "Dus, als je ooit een steentje in je schoen voelt terwijl je in het bos wandelt, wees niet boos." },
             { name: "Lithorock", text: "Het zou wel eens het begin kunnen zijn van een groot avontuur." },
-            { name: "Lithorock", text: "En vergeet niet: zelfs de kleinste steen kan de grootste rimpelingen veroorzaken." },
         ];
         this.currentDialogueIndex = 0;
         this.showCurrentDialogue();

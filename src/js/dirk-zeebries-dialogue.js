@@ -312,7 +312,7 @@ export class Drikdialogue extends Scene {
             { name: "Dirk Zeebries", text: "Yo, inderdaad, de laatste persoon die het artifact heeft gezien, was een machtige magiër genaamd Elvira de Aquatische." },
             { name: "Dirk Zeebries", text: "Zij wist de ware potentie van het artifact te benutten en gebruikte het om haar volk te beschermen tegen een grote droogte." },
             { name: "Dirk Zeebries", text: "Maar yo, Elvira verdween op mysterieuze wijze, en met haar verdween ook het artifact." },
-            { name: "Dirk Zeebries", text: "Sommigen zeggen dat ze is opgenomen in het water zelf, haar geest eeuwig verbonden met de Kralingse Plas, dude." },
+            { name: "Dirk Zeebries", text: "Sommigen zeggen dat ze is opgenomen in het water zelf en dat haar geest nog ergens rondzwemt, dude." },
             { name: "Dirk Zeebries", text: "Yo, wat betreft de gevaren, ja, die zijn er volop." },
             { name: "Dirk Zeebries", text: "Het artifact wordt bewaakt door oude beschermers, watergeesten die loyaler zijn dan de trouwste wachter." },
             { name: "Dirk Zeebries", text: "Yo, ze zullen alles doen om te voorkomen dat onwaardige handen het artifact bemachtigen." },
