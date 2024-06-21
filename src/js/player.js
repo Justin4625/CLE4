@@ -14,6 +14,11 @@ import { Mystery } from "./mysteryartifact";
 
 export class Player extends Actor {
 
+    leftcurrentFrame = 0;
+    rightcurrentFrame = 0;
+    animationSpeed = 0.08;
+    leftanimationFrames = [Resources.ML1, Resources.ML2, Resources.ML3, Resources.ML2];
+    rightanimationFrames = [Resources.MR1, Resources.MR2, Resources.MR3, Resources.MR2];
     sprite
     dialogueStartedMap = new Map();
 
@@ -27,7 +32,7 @@ export class Player extends Actor {
         this.isGrounded = false;
     }
     onInitialize(engine) {
-        this.sprite = Resources.Test.toSprite();
+        this.sprite = Resources.ML2.toSprite();
         this.graphics.use(this.sprite);
         this.scale = new Vector(0.5, 0.5);
 
@@ -61,7 +66,7 @@ export class Player extends Actor {
 
 
     onPreUpdate(engine, delta) {
-        this.sprite = Resources.Test.toSprite()
+        this.sprite = Resources.ML2.toSprite()
         this.graphics.use(this.sprite)
 
 
@@ -73,29 +78,44 @@ export class Player extends Actor {
         const gamepads = engine.input.gamepads;
 
         if (keyboard.isHeld(Keys.W) || keyboard.isHeld(Keys.Up) || gamepads.at(0).getAxes(Axes.LeftStickY) < - 0.5) {
-            if (this.isGrounded) {
-                //  this.isGrounded = false;
-            }
             yspeed = -150;
         }
 
         if (keyboard.isHeld(Keys.D) || keyboard.isHeld(Keys.Right) || gamepads.at(0).getAxes(Axes.LeftStickX) > 0.5) {
             xspeed = 150;
-            // this.sprite.flipHorizontal = true;
+            this.animateRight();
         }
 
         if (keyboard.isHeld(Keys.A) || keyboard.isHeld(Keys.Left) || gamepads.at(0).getAxes(Axes.LeftStickX) < -0.5) {
             xspeed = -150;
-            // this.sprite.flipHorizontal = false;
+            this.animateLeft();
         }
 
         if (keyboard.isHeld(Keys.S) || keyboard.isHeld(Keys.Down) || gamepads.at(0).getAxes(Axes.LeftStickY) > 0.5) {
             yspeed = 150;
-            // this.sprite.flipHorizontal = false;
         }
 
         // Update velocity
         this.vel = new Vector(xspeed, yspeed);
     }
 
+    animateLeft() {
+        this.leftcurrentFrame = (this.leftcurrentFrame + this.animationSpeed) % this.leftanimationFrames.length;
+        if (this.leftcurrentFrame >= this.leftanimationFrames.length) {
+            this.leftcurrentFrame = 0;
+        }
+
+        const sprite = this.leftanimationFrames[Math.floor(this.leftcurrentFrame)].toSprite();
+        this.graphics.use(sprite);
+    }
+
+    animateRight() {
+        this.rightcurrentFrame = (this.rightcurrentFrame + this.animationSpeed) % this.rightanimationFrames.length;
+        if (this.rightcurrentFrame >= this.rightanimationFrames.length) {
+            this.rightcurrentFrame = 0;
+        }
+
+        const sprite = this.rightanimationFrames[Math.floor(this.rightcurrentFrame)].toSprite();
+        this.graphics.use(sprite);
+    }
 }
