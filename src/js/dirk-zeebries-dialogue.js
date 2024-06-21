@@ -34,6 +34,28 @@ export class Drikdialogue extends Scene {
         });
     }
 
+    onPreUpdate(engine, delta) {
+        super.onPreUpdate(engine, delta);
+    
+        const gamepad = engine.input.gamepads.at(0); // Neem aan dat er maar één gamepad is en neem de eerste
+    
+        if (gamepad) {
+            // Face1 knop komt typisch overeen met knop 2 op de meeste gamepads
+            if (gamepad.isButtonPressed(Input.Buttons.Face1) && !this.gamepadCooldown) {
+                if (this.currentDialogueIndex < this.dialogues.length - 1) {
+                    this.nextDialogue();
+                    this.gamepadCooldown = true;
+                    setTimeout(() => { this.gamepadCooldown = false; }, 400); // 400ms cooldown
+                } else {
+                    this.removeDialogues();
+                    if (!this.choiceMade) {
+                        this.showChoiceOptions();
+                    }
+                }
+            }
+        }
+    }
+
     createDialogueBox(text, name) {
         const maxWidth = 600;
         const lines = this.splitTextIntoLines(text, maxWidth);
@@ -174,30 +196,30 @@ export class Drikdialogue extends Scene {
         const borderWidth = 2;
         const padding = 10;
         const symbolPairs = [
-            ['❑', 'X'],
-            ['Δ', 'Y'],
-            ['O', 'B']
+            ['□', '✕'], // Square (□) corresponds to 'X' on PlayStation
+            ['△', 'Y'], // Triangle (△) corresponds to 'Y' on PlayStation
+            ['◯', 'B']  // Circle (◯) corresponds to 'B' on PlayStation
         ];
-
+    
         options.forEach((option, index) => {
-            let symbols = symbolPairs[index % symbolPairs.length]; // Afwisselen tussen symbolenparen als er meer opties zijn dan paren
-            let optionText = `${symbols[0]} / ${symbols[1]} `; // Gebruik de symbolen in het formaat ❑ / X
-
-            if (index === 0 || index === 1 || index === 2) {
+            let symbols = symbolPairs[index % symbolPairs.length];
+            let optionText = `${symbols[0]} / ${symbols[1]} `;
+    
+            if (index < 3) { // Only wrap text for the first three options
                 optionText += this.wrapText(option, maxWidth);
             } else {
                 optionText += option;
             }
-
+    
             const textHeight = this.getTextHeight(optionText, maxWidth);
-
+    
             const optionBox = new Actor({
                 pos: new Vector(375, posY + textHeight / 2),
                 width: maxWidth + padding * 2,
                 height: textHeight + padding * 2,
                 color: Color.Black,
             });
-
+    
             const border = new Actor({
                 pos: new Vector(650, posY + textHeight / 2),
                 width: maxWidth + padding * 2 + borderWidth * 2,
@@ -205,14 +227,14 @@ export class Drikdialogue extends Scene {
                 color: Color.White,
                 anchor: Vector.Half,
             });
-
+    
             const optionBackground = new Actor({
                 pos: new Vector(650, posY + textHeight / 2),
                 width: maxWidth + padding * 2,
                 height: textHeight + padding * 2,
                 color: Color.Black,
             });
-
+    
             const optionLabel = new Label({
                 text: optionText,
                 pos: new Vector(330, posY),
@@ -222,19 +244,35 @@ export class Drikdialogue extends Scene {
                 }),
                 color: Color.White,
             });
-
-            optionLabel.on('pointerdown', () => {
-                this.removeDialogues();
-                this.choiceMade = true;
-                callback.call(this);
-            });
-
+    
+            // Add event listeners for PlayStation controller buttons
+            if (index === 0) { // Square (□) -> X button on PlayStation
+                optionLabel.on('pointerdown', () => {
+                    this.removeDialogues();
+                    this.choiceMade = true;
+                    callback.call(this);
+                });
+            } else if (index === 1) { // Triangle (△) -> Y button on PlayStation
+                optionLabel.on('pointerdown', () => {
+                    this.removeDialogues();
+                    this.choiceMade = true;
+                    callback.call(this);
+                });
+            } else if (index === 2) { // Circle (◯) -> B button on PlayStation
+                optionLabel.on('pointerdown', () => {
+                    this.removeDialogues();
+                    this.choiceMade = true;
+                    callback.call(this);
+                });
+            }
+    
             this.add(border);
             this.add(optionBackground);
             this.add(optionLabel);
             posY += textHeight + padding * 2 + borderWidth * 2;
         });
     }
+    
 
     wrapText(text, maxWidth) {
         const words = text.split(' ');
