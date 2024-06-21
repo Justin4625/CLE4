@@ -12,7 +12,7 @@ export class Badending extends Scene {
 
     onInitialize(engine) {
         const endScreenImage = new Sprite({
-            image: Resources.Endscreen,
+            image: Resources.BadEndScreen,
             destSize: { width: 1280, height: 720 }
         });
 
@@ -24,8 +24,6 @@ export class Badending extends Scene {
         bg.graphics.use(endScreenImage);
         this.add(bg);
 
-        this.congratulationsText();
-        this.youdiditText();
         this.spawnBackbutton();
 
         if (this.Backbutton) {
@@ -36,24 +34,10 @@ export class Badending extends Scene {
         }
     }
 
-    congratulationsText() {
-        this.congratulations = new Actor();
-        this.congratulations.graphics.use(Resources.Congratulations.toSprite());
-        this.congratulations.pos = new Vector(625, 50);
-        this.add(this.congratulations);
-    }
-
-    youdiditText() {
-        this.youdidit = new Actor();
-        this.youdidit.graphics.use(Resources.Youdidit.toSprite());
-        this.youdidit.pos = new Vector(660, 170);
-        this.add(this.youdidit);
-    }
-
     spawnBackbutton() {
         this.Backbutton = new Actor();
         this.Backbutton.graphics.use(Resources.Backbutton.toSprite());
-        this.Backbutton.pos = new Vector(650, 500);
+        this.Backbutton.pos = new Vector(600, 450);
         this.add(this.Backbutton);
     }
 

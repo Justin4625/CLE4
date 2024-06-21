@@ -7,6 +7,7 @@ const Resources = {
     Startdialogue: new ImageSource('images/startdialogue.png'),
     StartScreen: new ImageSource('images/startscreen.png'),
     GoodEndScreen: new ImageSource('images/good-endscreen.png'),
+    BadEndScreen: new ImageSource('images/badending.png'),
     Endscreen: new ImageSource('images/endscreen.png'),
     Backbutton: new ImageSource('images/backbutton.png'),
     Congratulations: new ImageSource('images/congratulations.png'),
