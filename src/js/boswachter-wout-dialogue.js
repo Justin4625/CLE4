@@ -90,7 +90,7 @@ export class Woutdialogue extends Scene {
 
         if (gamepad) {
             // Face1 knop komt typisch overeen met knop 1 op de meeste gamepads
-            if (gamepad.isButtonPressed(Input.Buttons.Face2) || gamepad.isButtonPressed(Input.Buttons.Face3) || gamepad.isButtonPressed(Input.Buttons.Face4) && this.choiseOption == true && !this.gamepadCooldown) {
+            if (gamepad.isButtonPressed(Input.Buttons.Face1) || gamepad.isButtonPressed(Input.Buttons.Face2) || gamepad.isButtonPressed(Input.Buttons.Face3) || gamepad.isButtonPressed(Input.Buttons.Face4) && this.choiseOption == true && !this.gamepadCooldown) {
                 if (currentTime - this.lastButtonPressTime > this.cooldown) {
                     this.lastButtonPressTime = currentTime;
                     this.dialogue++
