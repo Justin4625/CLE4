@@ -16,9 +16,13 @@ export class Player extends Actor {
 
     leftcurrentFrame = 0;
     rightcurrentFrame = 0;
+    frontcurrentFrame = 0;
+    backcurrentFrame = 0;
     animationSpeed = 0.08;
     leftanimationFrames = [Resources.ML1, Resources.ML2, Resources.ML3, Resources.ML2];
     rightanimationFrames = [Resources.MR1, Resources.MR2, Resources.MR3, Resources.MR2];
+    frontanimationFrames = [Resources.MF1, Resources.MF2, Resources.MF3, Resources.MF2];
+    backanimationFrames = [Resources.MB1, Resources.MB2, Resources.MB3, Resources.MB2];
     sprite
     dialogueStartedMap = new Map();
 
@@ -32,7 +36,7 @@ export class Player extends Actor {
         this.isGrounded = false;
     }
     onInitialize(engine) {
-        this.sprite = Resources.ML2.toSprite();
+        this.sprite = Resources.MF2.toSprite();
         this.graphics.use(this.sprite);
         this.scale = new Vector(0.5, 0.5);
 
@@ -66,8 +70,8 @@ export class Player extends Actor {
 
 
     onPreUpdate(engine, delta) {
-        this.sprite = Resources.ML2.toSprite()
-        this.graphics.use(this.sprite)
+        // this.sprite = Resources.MF2.toSprite()
+        // this.graphics.use(this.sprite)
 
 
         let xspeed = 0;
@@ -79,6 +83,7 @@ export class Player extends Actor {
 
         if (keyboard.isHeld(Keys.W) || keyboard.isHeld(Keys.Up) || gamepads.at(0).getAxes(Axes.LeftStickY) < - 0.5) {
             yspeed = -150;
+            this.animateBack();
         }
 
         if (keyboard.isHeld(Keys.D) || keyboard.isHeld(Keys.Right) || gamepads.at(0).getAxes(Axes.LeftStickX) > 0.5) {
@@ -93,6 +98,7 @@ export class Player extends Actor {
 
         if (keyboard.isHeld(Keys.S) || keyboard.isHeld(Keys.Down) || gamepads.at(0).getAxes(Axes.LeftStickY) > 0.5) {
             yspeed = 150;
+            this.animateFront();
         }
 
         // Update velocity
@@ -116,6 +122,26 @@ export class Player extends Actor {
         }
 
         const sprite = this.rightanimationFrames[Math.floor(this.rightcurrentFrame)].toSprite();
+        this.graphics.use(sprite);
+    }
+
+    animateFront() {
+        this.frontcurrentFrame = (this.frontcurrentFrame + this.animationSpeed) % this.frontanimationFrames.length;
+        if (this.frontcurrentFrame >= this.frontanimationFrames.length) {
+            this.frontcurrentFrame = 0;
+        }
+
+        const sprite = this.frontanimationFrames[Math.floor(this.frontcurrentFrame)].toSprite();
+        this.graphics.use(sprite);
+    }
+
+    animateBack() {
+        this.backcurrentFrame = (this.backcurrentFrame + this.animationSpeed) % this.backanimationFrames.length;
+        if (this.backcurrentFrame >= this.backanimationFrames.length) {
+            this.backcurrentFrame = 0;
+        }
+
+        const sprite = this.backanimationFrames[Math.floor(this.backcurrentFrame)].toSprite();
         this.graphics.use(sprite);
     }
 }
