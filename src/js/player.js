@@ -86,6 +86,11 @@ export class Player extends Actor {
             this.animateBack();
         }
 
+        if (keyboard.isHeld(Keys.S) || keyboard.isHeld(Keys.Down) || gamepads.at(0).getAxes(Axes.LeftStickY) > 0.5) {
+            yspeed = 150;
+            this.animateFront();
+        }
+
         if (keyboard.isHeld(Keys.D) || keyboard.isHeld(Keys.Right) || gamepads.at(0).getAxes(Axes.LeftStickX) > 0.5) {
             xspeed = 150;
             this.animateRight();
@@ -94,11 +99,6 @@ export class Player extends Actor {
         if (keyboard.isHeld(Keys.A) || keyboard.isHeld(Keys.Left) || gamepads.at(0).getAxes(Axes.LeftStickX) < -0.5) {
             xspeed = -150;
             this.animateLeft();
-        }
-
-        if (keyboard.isHeld(Keys.S) || keyboard.isHeld(Keys.Down) || gamepads.at(0).getAxes(Axes.LeftStickY) > 0.5) {
-            yspeed = 150;
-            this.animateFront();
         }
 
         // Update velocity
