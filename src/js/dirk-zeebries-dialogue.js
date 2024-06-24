@@ -2,6 +2,13 @@ import { Scene, Label, Color, Input, Font, Vector, Actor } from "excalibur";
 import { Player } from "./player";
 
 export class Drikdialogue extends Scene {
+
+    choiseOption = false
+    dialogue = 1
+    options = 1
+    enddialogue = 1
+    showdialogue = 1
+
     constructor() {
         super();
         this.currentDialogueIndex = 0;
@@ -14,6 +21,8 @@ export class Drikdialogue extends Scene {
             { name: "Dirk Zeebries", text: "Yo, wat wil je weten, dude?" },
         ];
         this.respawnCoordinates = { x: 755, y: 1280 };
+        this.lastButtonPressTime = 0;
+        this.cooldown = 1000; // Cooldown period in milliseconds (e.g., 1000ms = 1 second)
     }
 
     onInitialize(engine) {
@@ -27,32 +36,97 @@ export class Drikdialogue extends Scene {
                 } else {
                     this.removeDialogues();
                     if (!this.choiceMade) {
-                        this.showChoiceOptions();
+                        this.showChoiceOptions1();
                     }
                 }
             }
         });
     }
 
-    onPreUpdate(engine, delta) {
+    onPreUpdate(engine, delta, callback) {
         super.onPreUpdate(engine, delta);
-    
+
+
         const gamepad = engine.input.gamepads.at(0); // Neem aan dat er maar één gamepad is en neem de eerste
-    
+        const currentTime = Date.now();
+
         if (gamepad) {
             // Face1 knop komt typisch overeen met knop 2 op de meeste gamepads
             if (gamepad.isButtonPressed(Input.Buttons.Face1) && !this.gamepadCooldown) {
                 if (this.currentDialogueIndex < this.dialogues.length - 1) {
                     this.nextDialogue();
                     this.gamepadCooldown = true;
+                    console.log('Face1 Pressed')
                     setTimeout(() => { this.gamepadCooldown = false; }, 400); // 400ms cooldown
                 } else {
                     this.removeDialogues();
-                    if (!this.choiceMade) {
-                        this.showChoiceOptions();
+                    console.log('else')
+
+                    if (!this.choiceMade || !this.gamepadCooldown) {
+                        // this.showChoiceOptions1();
+                        this.OptionSelection();
+                        setTimeout(() => { this.gamepadCooldown = false; }, 400); // 400ms cooldown
                     }
                 }
             }
+        }
+
+        if (gamepad) {
+            // Face1 knop komt typisch overeen met knop 1 op de meeste gamepads
+            if (gamepad.isButtonPressed(Input.Buttons.Face2) || gamepad.isButtonPressed(Input.Buttons.Face3) || gamepad.isButtonPressed(Input.Buttons.Face4) && this.choiseOption == true && !this.gamepadCooldown) {
+                if (currentTime - this.lastButtonPressTime > this.cooldown) {
+                    this.lastButtonPressTime = currentTime;
+                    this.dialogue++
+                    this.removeDialogues();
+                    this.choiceMade = true;
+                    const methodName = `showDialogue${this.dialogue}`;
+                    // const methodName2 = `showChoiceOptions${this.options}`;
+
+                    if (typeof this[methodName] === 'function' && !this.gamepadCooldown) {
+                        this[methodName]();
+                    } else if (!this.gamepadCooldown) {
+
+                        this.endDialogueScene()
+                        // this.enddialogue++
+                        console.warn(`Method ${methodName} does not exist`);
+                    }
+                }
+            }
+        }
+    }
+
+    OptionSelection() {
+        if (!this.gamepadCooldown) {
+            this.gamepadCooldown = true; // Start cooldown
+
+            if (this.enddialogue == 1) {
+                console.log(this.dialogue)
+                this.enddialogue++;
+                this.showChoiceOptions1();
+                console.log('showChoiceOptions1');
+            } else if (this.enddialogue == 2) {
+                console.log(this.dialogue)
+
+                this.enddialogue++;
+                this.showChoiceOptions2();
+                console.log('showChoiceOptions2');
+            } else if (this.enddialogue == 3) {
+                console.log(this.dialogue)
+
+                this.enddialogue++;
+                this.showChoiceOptions3();
+                console.log('showChoiceOptions3');
+            } else if (this.enddialogue == 4) {
+                console.log(this.dialogue)
+
+                this.enddialogue++;
+                this.showChoiceOptions4();
+                console.log('showChoiceOptions4');
+            } else {
+                this.endDialogueScene();
+            }
+
+            setTimeout(() => { this.gamepadCooldown = false; }, 400); // 400ms cooldown before next option
         }
     }
 
@@ -170,14 +244,15 @@ export class Drikdialogue extends Scene {
             const newDialoguesAdded = this.dialogues.length > this.currentDialogueIndex + 1;
             if (!newDialoguesAdded) {
                 if (!this.choiceMade) {
-                    this.showChoiceOptions();
+                    this.showChoiceOptions1();
                 }
                 this.removeDialogues();
             }
         }
     }
 
-    showChoiceOptions() {
+    showChoiceOptions1() {
+        this.showdialogue++
         this.removeDialogues();
 
         const options = [
@@ -190,6 +265,8 @@ export class Drikdialogue extends Scene {
     }
 
     showOptions(options, callback) {
+        this.choiseOption = true
+
         let posY = 500;
         const lineHeight = 25;
         const maxWidth = 650;
@@ -200,26 +277,26 @@ export class Drikdialogue extends Scene {
             ['△', 'Y'], // Triangle (△) corresponds to 'Y' on PlayStation
             ['◯', 'B']  // Circle (◯) corresponds to 'B' on PlayStation
         ];
-    
+
         options.forEach((option, index) => {
             let symbols = symbolPairs[index % symbolPairs.length];
             let optionText = `${symbols[0]} / ${symbols[1]} `;
-    
+
             if (index < 3) { // Only wrap text for the first three options
                 optionText += this.wrapText(option, maxWidth);
             } else {
                 optionText += option;
             }
-    
+
             const textHeight = this.getTextHeight(optionText, maxWidth);
-    
+
             const optionBox = new Actor({
                 pos: new Vector(375, posY + textHeight / 2),
                 width: maxWidth + padding * 2,
                 height: textHeight + padding * 2,
                 color: Color.Black,
             });
-    
+
             const border = new Actor({
                 pos: new Vector(650, posY + textHeight / 2),
                 width: maxWidth + padding * 2 + borderWidth * 2,
@@ -227,14 +304,14 @@ export class Drikdialogue extends Scene {
                 color: Color.White,
                 anchor: Vector.Half,
             });
-    
+
             const optionBackground = new Actor({
                 pos: new Vector(650, posY + textHeight / 2),
                 width: maxWidth + padding * 2,
                 height: textHeight + padding * 2,
                 color: Color.Black,
             });
-    
+
             const optionLabel = new Label({
                 text: optionText,
                 pos: new Vector(330, posY),
@@ -244,7 +321,7 @@ export class Drikdialogue extends Scene {
                 }),
                 color: Color.White,
             });
-    
+
             // Add event listeners for PlayStation controller buttons
             if (index === 0) { // Square (□) -> X button on PlayStation
                 optionLabel.on('pointerdown', () => {
@@ -265,14 +342,15 @@ export class Drikdialogue extends Scene {
                     callback.call(this);
                 });
             }
-    
+
             this.add(border);
             this.add(optionBackground);
             this.add(optionLabel);
             posY += textHeight + padding * 2 + borderWidth * 2;
         });
+
     }
-    
+
 
     wrapText(text, maxWidth) {
         const words = text.split(' ');
@@ -431,7 +509,7 @@ export class Drikdialogue extends Scene {
         ];
 
         this.showOptions(options, this.showDialogue5);
-        
+
     }
 
     showDialogue5() {
@@ -466,12 +544,12 @@ export class Drikdialogue extends Scene {
         const player = new Player();
         player.pos.x = this.respawnCoordinates.x;
         player.pos.y = this.respawnCoordinates.y;
-    
+
         // Verwijder alle event listeners voor de spatiebalk
         this.engine.input.keyboard.off('press');
-    
+
         // Ga naar de mapscene
         this.engine.goToScene('map');
     }
-    
+
 }

@@ -2,6 +2,13 @@ import { Scene, Label, Color, Input, Font, Vector, Actor } from "excalibur";
 import { Player } from "./player";
 
 export class Elaradialogue extends Scene {
+
+    choiseOption = false
+    dialogue = 1
+    options = 1
+    enddialogue = 1
+    showdialogue = 1
+
     constructor() {
         super();
         this.currentDialogueIndex = 0;
@@ -14,7 +21,9 @@ export class Elaradialogue extends Scene {
             { name: "Elara Mystveil?", text: "Of niet?" },
             { name: "Elara Mystveil?", text: "Wie weet." },
         ];
-        this.respawnCoordinates = { x: 183, y: 526 }; 
+        this.respawnCoordinates = { x: 183, y: 526 };
+        this.lastButtonPressTime = 0;
+        this.cooldown = 1000; // Cooldown period in milliseconds (e.g., 1000ms = 1 second)
     }
 
     onInitialize(engine) {
@@ -28,11 +37,123 @@ export class Elaradialogue extends Scene {
                 } else {
                     this.removeDialogues();
                     if (!this.choiceMade) {
-                        this.showChoiceOptions();
+                        this.showChoiceOptions1();
                     }
                 }
             }
         });
+    }
+
+    onPreUpdate(engine, delta, callback) {
+        super.onPreUpdate(engine, delta);
+
+
+        const gamepad = engine.input.gamepads.at(0); // Neem aan dat er maar één gamepad is en neem de eerste
+        const currentTime = Date.now();
+
+        if (gamepad) {
+            // Face1 knop komt typisch overeen met knop 2 op de meeste gamepads
+            if (gamepad.isButtonPressed(Input.Buttons.Face1) && !this.gamepadCooldown) {
+                if (this.currentDialogueIndex < this.dialogues.length - 1) {
+                    this.nextDialogue();
+                    this.gamepadCooldown = true;
+                    console.log('Face1 Pressed')
+                    setTimeout(() => { this.gamepadCooldown = false; }, 400); // 400ms cooldown
+                } else {
+                    this.removeDialogues();
+                    console.log('else')
+
+                    if (!this.choiceMade || !this.gamepadCooldown) {
+                        // this.showChoiceOptions1();
+                        this.OptionSelection();
+                        setTimeout(() => { this.gamepadCooldown = false; }, 400); // 400ms cooldown
+                    }
+                }
+            }
+        }
+
+        if (gamepad) {
+            // Face1 knop komt typisch overeen met knop 1 op de meeste gamepads
+            if (gamepad.isButtonPressed(Input.Buttons.Face2) || gamepad.isButtonPressed(Input.Buttons.Face3) || gamepad.isButtonPressed(Input.Buttons.Face4) && this.choiseOption == true && !this.gamepadCooldown) {
+                if (currentTime - this.lastButtonPressTime > this.cooldown) {
+                    this.lastButtonPressTime = currentTime;
+                    this.dialogue++
+                    this.removeDialogues();
+                    this.choiceMade = true;
+                    const methodName = `showDialogue${this.dialogue}`;
+                    // const methodName2 = `showChoiceOptions${this.options}`;
+
+                    if (typeof this[methodName] === 'function' && !this.gamepadCooldown) {
+                        this[methodName]();
+                    } else if (!this.gamepadCooldown) {
+
+                        this.endDialogueScene()
+                        // this.enddialogue++
+                        console.warn(`Method ${methodName} does not exist`);
+                    }
+                }
+            }
+        }
+    }
+
+    OptionSelection() {
+        if (!this.gamepadCooldown) {
+            this.gamepadCooldown = true; // Start cooldown
+
+            if (this.enddialogue == 1) {
+                console.log(this.dialogue)
+                this.enddialogue++;
+                this.showChoiceOptions1();
+                console.log('showChoiceOptions1');
+            } else if (this.enddialogue == 2) {
+                console.log(this.dialogue)
+
+                this.enddialogue++;
+                this.showChoiceOptions2();
+                console.log('showChoiceOptions2');
+            } else if (this.enddialogue == 3) {
+                console.log(this.dialogue)
+
+                this.enddialogue++;
+                this.showChoiceOptions3();
+                console.log('showChoiceOptions3');
+            } else if (this.enddialogue == 4) {
+                console.log(this.dialogue)
+
+                this.enddialogue++;
+                this.showChoiceOptions4();
+                console.log('showChoiceOptions4');
+            } else if (this.enddialogue == 5) {
+                console.log(this.dialogue)
+
+                this.enddialogue++;
+                this.showChoiceOptions5();
+                console.log('showChoiceOptions5');
+            } else if (this.enddialogue == 6) {
+                console.log(this.dialogue)
+
+                this.enddialogue++;
+                this.showChoiceOptions6();
+                console.log('showChoiceOptions6');
+            } else if (this.enddialogue == 7) {
+                console.log(this.dialogue)
+
+                this.enddialogue++;
+                this.showChoiceOptions7();
+                console.log('showChoiceOptions7');
+            } else if (this.enddialogue == 8) {
+                console.log(this.dialogue)
+
+                this.enddialogue++;
+                this.showChoiceOptions8();
+                console.log('showChoiceOptions8');
+            }
+            else {
+                this.endDialogueScene();
+            }
+
+            setTimeout(() => { this.gamepadCooldown = false; }, 400); // 400ms cooldown before next option
+        }
     }
 
     createDialogueBox(text, name) {
@@ -149,14 +270,14 @@ export class Elaradialogue extends Scene {
             const newDialoguesAdded = this.dialogues.length > this.currentDialogueIndex + 1;
             if (!newDialoguesAdded) {
                 if (!this.choiceMade) {
-                    this.showChoiceOptions();
+                    this.showChoiceOptions1();
                 }
                 this.removeDialogues();
             }
         }
     }
 
-    showChoiceOptions() {
+    showChoiceOptions1() {
         this.removeDialogues();
 
         const options = [
@@ -169,6 +290,8 @@ export class Elaradialogue extends Scene {
     }
 
     showOptions(options, callback) {
+        this.choiseOption = true
+
         let posY = 500;
         const lineHeight = 25;
         const maxWidth = 650;
@@ -611,10 +734,10 @@ export class Elaradialogue extends Scene {
         const player = new Player;
         player.pos.x = this.respawnCoordinates.x;
         player.pos.y = this.respawnCoordinates.y;
-        
+
         this.engine.input.keyboard.off('press');
-        this.engine.goToScene('map'); 
-       
+        this.engine.goToScene('map');
+
     }
-    
+
 }
